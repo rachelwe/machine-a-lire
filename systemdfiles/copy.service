@@ -1,0 +1,18 @@
+[Unit]
+Description=Attend une cle usb
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/Documents/machine-a-lire
+ExecStart=/bin/bash /home/pi/Documents/machine-a-lire/listeningForUSB.sh
+#Si on veut voir les logs en cas d'erreur:
+StandardOutput=inherit
+StandardError=inherit
+#StandardOutput=null
+User=pi
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
