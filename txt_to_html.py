@@ -9,9 +9,9 @@ import add_footer
 
 # Fonction qui convertit notre fichier .txt courant dans ./input/ avec du texte en markdown à l'intérieur,
 # en fichier .html balisé dans ./output/
-def layout(fullpath, input_folder, subdir):
+def layout(fullpath, input_folder, subdir, metadatas):
 	print("layout :" + fullpath)
-	update_markdown.rearrangeMardownOrder(fullpath) # on reformate le markdown utilisé pour un autre plus lisible
+	update_markdown.rearrangeMardownOrder(fullpath, metadatas) # on reformate le markdown utilisé pour un autre plus lisible
 	
 	# A- On ouvre le fichier pour récupérer le contenu
 	with open(fullpath, 'r') as myfile:

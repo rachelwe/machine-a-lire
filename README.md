@@ -18,6 +18,9 @@ an open-source old newspapers distributor based on the project "L'Exprimante". ð
   - save and exit
 - You might also need to install `libnotify-bin` : `sudo apt-get install libnotify-bin`
 
+### Add webserver
+- Install flask `sudo pip install flask`
+- follow the same process used for `copy.service` (end of readme) with webserver.service
 
 ## Original project
 

@@ -1,0 +1,17 @@
+[Unit]
+Description=Lance le serveur web
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/Documents
+ExecStart=/bin/bash /home/pi/Documents/machine-a-lire/launch_server.sh
+#Si on veut voir les logs en cas d'erreur:
+StandardOutput=inherit
+StandardError=inherit
+#StandardOutput=null
+User=pi
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

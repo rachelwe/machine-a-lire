@@ -9,9 +9,12 @@
       <script src="../static/scripts.js" defer></script>
    </head>
    <body>
-      <h1>Capteur de qualité de l'air</h1>
-      <p>Date du serveur web: {{ time }} | Dernière mesure : <span class="latest"></span></p>
-      <form action="/screen" method="GET"><button type="submit">Allumer l'écran</button></form>
-      <ul class="datas"></ul>
+      <h1>Machine à lire</h1>
+      <p>Date du serveur web: {{ time }}</p>
+      <ul class="datas">
+         {% for item in files %}
+            <li><a href="/print/{{ item }}">Fichier : {{ item }}</a></li>
+         {% endfor %}
+      </ul>
    </body>
 </html>
