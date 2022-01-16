@@ -1,8 +1,61 @@
 body {
   max-width: 80ch;
   margin: 2rem auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.datas {
-  max-height: 80vh;
-  overflow: auto;
+.datas {  
+  list-style: none;
+  padding: 0;
 }
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 3rem;
+}
+nav li {
+  margin-right: .5rem
+}
+nav button {
+  background: #f2f2f9;
+  padding: .2rem .5rem;
+  border-radius: 10px;
+  border: none;
+  color: #2a73af;
+  cursor: pointer;
+  font-weight: 700;
+}
+[data-category] {
+  display: none;
+  background: #f2f2f2;
+  padding: 1.5rem 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  position: relative;
+}
+[data-category] button {
+  background: none;
+  color: #2a73af;
+  border: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0;
+  cursor: pointer;
+}
+[data-category] button::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  content: "";
+  z-index: 1;
+}
+[data-category] .meta {
+  opacity: .6;
+  margin: .5rem 0 .5rem;
+  font-size: .8rem;
+}
+.is-active {display: block}

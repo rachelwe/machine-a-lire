@@ -18,6 +18,7 @@ def printFile():
 		p.image(article) # article is the fullpath of the selected article
 		p.cut()
 		#p.image("/home/pi/Documents/machine-a-lire/assets/marge-ticket.jpg")
+		print('ticket imprimé !')
 	else:
 		print('pas de nom de fichier renseigné')
 

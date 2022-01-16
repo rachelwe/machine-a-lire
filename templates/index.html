@@ -9,11 +9,24 @@
       <script src="../static/scripts.js" defer></script>
    </head>
    <body>
-      <h1>Machine à lire</h1>
-      <p>Date du serveur web: {{ time }}</p>
+      <h1>{{ title }}</h1>
+      <p>{{ description }}</p>
+      <nav>
+         <ul>
+            <li><button data-target="all">Tous</button></li>
+            {% for category, item in files.values()|groupby("category") %}
+               <li><button data-target="{{ category|urlencode }}">{{ category }}</button></li>
+            {% endfor %}
+         </ul>
+      </nav>
       <ul class="datas">
          {% for item in files %}
-            <li><a href="/print/{{ item }}">Fichier : {{ item }}</a></li>
+            <li data-category="{{ files[item].category|urlencode }} all" class="is-active">
+               <form action="/print/{{ item }}.jpg" method="get" style="font-weight: 700;">
+                  <button type="submit">{{ files[item].title }}</button>
+               </form>
+               <p class="meta">{{ files[item].author }} - {{ files[item].category }}</p>
+            </li>
          {% endfor %}
       </ul>
    </body>

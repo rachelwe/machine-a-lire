@@ -1,4 +1,5 @@
 import os
+import json
 import imgkit # à installer à la main via `sudo apt-get install wkhtmltopdf`
 
 # Importation des sous fichiers python dont on a besoin :
@@ -18,6 +19,20 @@ options = {
 
 # On définit le dossier où sont les fichiers (textes et images) importés
 input_folder = './input'
+metadatas_list = {}
+
+def addLogging(filename, logDict:dict):
+		loggingsFile = './images/list.json'
+		data = {}
+
+		if os.path.isfile(loggingsFile) :
+				with open(loggingsFile) as f:
+						data = json.load(f)
+
+		data[filename] = logDict
+
+		with open(loggingsFile, 'w') as f:
+				json.dump(data, f)
 
 # B- On s'occupe des fichiers .txt
 for subdir, dirs, files in os.walk(input_folder): # Pour chaque chemin, dossiers et fichiers dans ./input_folder
@@ -32,7 +47,7 @@ for subdir, dirs, files in os.walk(input_folder): # Pour chaque chemin, dossiers
 			with open(fullpath, 'r') as myfile: # on ouvre le fichier
 
 				metadatas = meta_extractor.extractMETA(myfile) # Récupération des métadonnées
-				print(metadatas)
+				metadatas_list[os.path.splitext(filename)[0]] = metadatas
 
 				qrcodegenerator.createQrCode(metadatas['url'], filename) # Génération du QR code
 			
@@ -49,5 +64,6 @@ for subdir, dirs, files in os.walk('./output'): # Pour chaque chemin, dossiers e
 		#print(type(jpgfile))
 		imgkit.from_file(outputfile, jpgfile, options=options) # on convertit outputfile en jpgfile
 		print(jpgfile + " > converted!")
+		addLogging(os.path.splitext(filename)[0], metadatas_list[os.path.splitext(filename)[0]])
 		#imgkit.from_file('./output/'+filename+'.html', './images/'+filename+'.jpg')
 

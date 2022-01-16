@@ -4,23 +4,24 @@ Code created by Matt Richardson
 for details, visit:  http://mattrichardson.com/Raspberry-Pi-Flask/inde...
 '''
 from flask import Flask, render_template
-import datetime
 import subprocess
 import os
+import json
 app = Flask(__name__)
 @app.route("/")
 def hello():
    
    # Get the list of all files and directories
-   path = "/home/pi/Documents/machine-a-lire/images/"
-   dir_list = os.listdir(path)
-   now = datetime.datetime.now()
-   timeString = now.strftime("%d/%m/%Y %H:%M")
+   path = "/home/pi/Documents/machine-a-lire/images/list.json"
+
+   with open(path) as f:
+      data = json.load(f)
+
    templateData = {
       'title' : 'Machine à lire',
-      'time': timeString,
-      'files': dir_list
-      }
+      'description': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel cumque, facilis vitae accusantium voluptatem quae consequatur alias accusamus nemo autem modi totam sequi mollitia quas earum enim cum minima harum.',
+      'files': data
+   }
    return render_template('index.html', **templateData)
 
 @app.route("/print/<url>")

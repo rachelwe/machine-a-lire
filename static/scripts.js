@@ -24,7 +24,7 @@
         parameters.callbackError(response)
         throw new Error(response.statusText);
       }
-      return response.json();
+      return response.text();
     })
     .then(output => {
       const placeholderCallback = (res) => {console.log('callback undefined, output :', res)}
@@ -44,9 +44,10 @@ forms.forEach(form => {
       node: event.target,
       url: event.target.action,
       callbackError: function (error) {
-        error.json()
+        error.text()
           .then(output => {
             console.log(output);
+            alert(output);
           });
       },
       callback: function (response) {
@@ -56,25 +57,18 @@ forms.forEach(form => {
   })
 })
 
-// Example fetch for the interface
-// fetch('../static/random-file.json', {
-//   method: 'GET'
-// })
-// .then(response => response.json())
-// .then(data => {
-//   console.log('Success:', data);
-//   data.reverse();
-//   const wrapper = document.querySelector('.datas')
-//   data.forEach((element) => {
-    
-//     const item = document.createElement('li');
-//     item.innerHTML = `
-//       <p><strong>Date et heure : ${element.timestamp}</strong></p>
-//     `;
-//     wrapper.appendChild(item);
-//   });
-  
-// })
-// .catch((error) => {
-//   console.error('Error:', error);
-// });
+const filters = document.querySelectorAll('[data-target]');
+const items = document.querySelectorAll("[data-category]");
+filters.forEach(filter => {
+  filter.addEventListener("click", (event) => {
+    const category = event.target.getAttribute("data-target");
+    if (!category) {return;}
+    items.forEach(item => {
+      if(item.getAttribute("data-category").includes(category)) {
+        item.classList.add('is-active');
+      } else {
+        item.classList.remove('is-active');
+      }
+    })
+  })
+})
