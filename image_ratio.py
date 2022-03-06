@@ -12,11 +12,8 @@ class ImageRatioCalculator:
     self.aspect_ratio = self.calculate_aspect(self.img_width, self.img_height)
 
   def find_existing_img_file(self, filename):
-    if filename.startswith("METEO"): # si le fichier commence par METEO
-      return None
-    else:
-      downcase_img_file = "./input/"+filename+".jpg"
-      upcase_img_file = "./input/"+filename+".JPG"
+    downcase_img_file = "./input/"+filename+".jpg"
+    upcase_img_file = "./input/"+filename+".JPG"
     
     if path.exists(downcase_img_file):
       print("File exists:" + downcase_img_file)

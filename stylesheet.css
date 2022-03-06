@@ -3,36 +3,43 @@
   padding: 0;
 }
 
+:root {
+  --font-titles: "Corporate S Bold", sans-serif;
+  --font-body: "Corporate S Regular", sans-serif;
+  --font-light: "Corporate S Light", sans-serif;
+  --font-italic: "Corporate S Italic", sans-serif;
+}
+
 html, body{
   width: 570px;
 }
 
 h6 {
   font-size:20pt;
-  font-family:"Barlow Condensed semibold", sans-serif;
+  font-family: var(--font-titles);
   padding: 0 20px;
   text-align: center;
 }
 
 
 h1 {
-    font-size: 52pt;
-    font-family: "Barlow Condensed semibold", sans-serif;
+    font-size: 45pt;
+    font-family: var(--font-titles);
     text-align: center;
     padding: 0.05em 1em;
-    line-height: 0.9;
+    line-height: 1.1;
 }
 
 h2 {
     font-size: 28pt;
-    font-family: "Barlow Condensed semibold", sans-serif;
+    font-family: var(--font-titles);
     text-align: center;
     margin: 1em 1em 0.05em 1em;
 }
 
 h3 {
   font-size:24pt;
-  font-family:"Inter medium", sans-serif;
+  font-family: var(--font-body);
   text-align: justify;
   padding: 20px 10px;
 }
@@ -43,7 +50,7 @@ sub{
 
 p {
     font-size: 20pt;
-    font-family: "Inter regular";
+    font-family: var(--font-body);
     font-weight: normal;
     text-align: justify;
     line-height: 1.3em;
@@ -52,7 +59,7 @@ p {
 }
 
 .ticket > p, .italic > p {
-    font-family: "Inter light";
+    font-family: var(--font-light);
     margin: 1em 0em;
     font-size: 14pt;
     line-height: 1.18em;
@@ -61,7 +68,7 @@ p {
 
 
 em{
- font-family:"Inter regular-italic";
+ font-family: var(--font-italic);
 }
 
 img {
@@ -95,17 +102,27 @@ h4 {
 }
 
 .tag {
-    font-family: "Barlow Condensed semibold";
+    font-family: var(--font-titles);
     color: white;
     text-align: center;
     font-size: 30pt;
-    padding: 15px 0 0 0;
+    padding: 15px 0 ;
     letter-spacing: 0.5px;
+}
+
+.bio {
+  font-size: 15pt;
+}
+
+.author {
+  font-family: var(--font-titles);
+  font-weight: bold;
+  text-align: center;
 }
 
 .date{
     text-align: center;
-    font-family: Barlow Condensed regular;
+    font-family: var(--font-body);
     color: white;
     margin-top: -25px;
     font-size: 27pt;
@@ -115,7 +132,7 @@ h4 {
 }
 
 .mentions > p {
-  font-family: "Inter medium";
+  font-family: var(--font-body);
   font-size: 12pt;
 }
 
@@ -139,65 +156,22 @@ h4 {
   padding: 15px 10px;
 }
 
-
 @font-face {
-  font-family : "Barlow Condensed light";
-  src : url('file:///home/pi/.fonts/BarlowCondensed-Light.ttf');  
+  font-family : "Corporate S Bold";
+  src : url('file:///home/pi/.fonts/CorpoSBol.otf');  
 }
 
 @font-face {
-  font-family : "Barlow Condensed regular";
-  src : url('file:///home/pi/.fonts/BarlowCondensed-Regular.ttf');  
+  font-family : "Corporate S Regular";
+  src : url('file:///home/pi/.fonts/CorpoSReg.otf');  
 }
 
 @font-face {
-  font-family : "Barlow Condensed medium";
-  src : url('file:///home/pi/.fonts/BarlowCondensed-Medium.ttf');  
+  font-family : "Corporate S Light";
+  src : url('file:///home/pi/.fonts/CorpoSLig.otf');  
 }
 
 @font-face {
-  font-family : "Barlow Condensed semibold";
-  src : url('file:///home/pi/.fonts/BarlowCondensed-SemiBold.ttf');  
-}
-
-@font-face {
-  font-family : "Inter light";
-  src : url('file:///home/pi/.fonts/Inter-Light.woff2') format('woff2');  
-}
-
-@font-face {
-  font-family : "Inter light-italic";
-  src : url('file:///home/pi/.fonts/Inter-LightItalic.woff2') format('woff2');  
-}
-
-@font-face {
-  font-family : "Inter regular";
-  src : url('file:///home/pi/.fonts/Inter-Regular.woff2') format('woff2');  
-}
-
-@font-face {
-  font-family : "Inter regular-italic";
-  src : url('file:///home/pi/.fonts/Inter-Italic.woff2') format('woff2');  
-}
-
-/*
-@font-face {
-  font-family : "Inter regular";
-  src : url('file:///home/pi/.fonts/Inter-Regular-slnt=0.ttf');  
-}
-
-@font-face {
-  font-family : "Inter regular-italic";
-  src : url('file:///home/pi/.fonts/Inter-Italic.otf');  
-}
-*/
-
-@font-face {
-  font-family : "Inter medium";
-  src : url('file:///home/pi/.fonts/Inter-Medium-slnt=0.ttf');  
-}
-
-@font-face {
-  font-family : "Inter medium-italic";
-  src : url('file:///home/pi/.fonts/Inter-Medium-slnt=0.ttf');  
+  font-family : "Corporate S Italic";
+  src : url('file:///home/pi/.fonts/CorpoSIta.otf');  
 }

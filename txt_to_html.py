@@ -29,10 +29,7 @@ def layout(fullpath, input_folder, subdir, metadatas):
 
 	# C- On ajoute et/ou crée le contenu
 	if img_ratio_calculator.horizontal_ratio(): # si true = si l'image est verticale plutôt qu'horizontale
-		if formatted_filename.startswith("METEO"): # et si l'article commence par METEO
-			header = r"<head><meta charset='UTF-8'><title>"+formatted_filename+"</title><link href='../stylesheet_meteo_h.css' rel='stylesheet'>\n</head>\n" # on charge stylesheet_meteo_h.css / black background & horizontal display
-		else: # pour tous les articles qui ne commencent pas par METEO
-			header = r"<head><meta charset='UTF-8'><title>"+formatted_filename+"</title><link href='../stylesheet_horizontale.css' rel='stylesheet'>\n</head>\n" # on charge stylesheet_horizontale.css / white background & h display
+		header = r"<head><meta charset='UTF-8'><title>"+formatted_filename+"</title><link href='../stylesheet_horizontale.css' rel='stylesheet'>\n</head>\n" # on charge stylesheet_horizontale.css / white background & h display
 		
 		output_file.write(header) # on écrit cette balise head
 		
@@ -49,10 +46,7 @@ def layout(fullpath, input_folder, subdir, metadatas):
 		add_footer.horizontal(formatted_filename, output_file) # on appelle la fonction horizontal du fichier add_footer qui vient ajouter les mentions, les logos, le qrcode et fermer le fichier
 		
 	else: # si img_ratio_calculator.horizontal_ratio() est faux, soit parce qu'il n'y a pas d'image, soit parce que celle-ci est horizontale
-		if formatted_filename.startswith("METEO"): # et si l'article commence par météo
-			header = r"<head><meta charset='UTF-8'><title>"+formatted_filename+"</title><link href='../stylesheet_meteo.css' rel='stylesheet'>\n</head>\n" # on charge stylesheet_meteo.css / black background & vertical display
-		else: # pour les autres articles
-			header = r"<head><meta charset='UTF-8'><title>"+formatted_filename+"</title><link href='../stylesheet.css' rel='stylesheet'>\n</head>\n" # on charge stylesheet.css / white background & v display
+		header = r"<head><meta charset='UTF-8'><title>"+formatted_filename+"</title><link href='../stylesheet.css' rel='stylesheet'>\n</head>\n" # on charge stylesheet.css / white background & v display
 
 		output_file.write(header) # et on l'écrit dans le fichier                                                   	
 		

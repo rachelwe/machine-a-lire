@@ -59,7 +59,7 @@ then
 	
 	# On supprime les dossiers input et output
 	rm -r $input_folder
-	rm -r $output_folder
+	# rm -r $output_folder
 	echo "tout est fini"
 	zenity --notification --text="Traitement terminé !" --display=:0
 	

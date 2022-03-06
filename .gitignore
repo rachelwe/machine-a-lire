@@ -3,3 +3,5 @@ images/*
 countdown.txt
 __pycache__
 /tests
+/input
+/output
