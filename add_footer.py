@@ -1,23 +1,23 @@
 def vertical(formatted_filename, output_file):
 	output_file.write('<div class="blocplus">\n<img src="../assets/element-barre.png">\n</div>')
 		
-	output_file.write('<div class="ticket">\n<p>Un ticket de presse ancienne proposé par Lectura Plus, le site du patrimoine écrit et graphique en Auvergne-Rhône-Alpes.<br>À lire dans la minute ! Pour plus de découvertes, rendez-vous sur <u>www.lectura.plus</u></p>\n</div>')
+	output_file.write('<div class="ticket">\n<p>Un ticket-poème proposé par La Bibliothèque patrimoniale numérique d\'Alca en nouvelle-Aquitaine. Pour plus de découvertes et pour télécharger des livres numériques gratuitement et librement : <u>alca-nouvelle-aquitaine.fr/fr/catalogue-numerique-patrimonial</u>\n</div>')
 	output_file.write('<div class="italic">\n<p>Ticket lecteur à conserver - ne pas jeter sur la voie publique</p>\n</div>')
 	
 	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + +
 		
-	output_file.write('<div class="logoL">\n<img src="../assets/LogoL.png">\n</div>') # on insère le logo
+	output_file.write('<div class="logoL">\n<img src="../assets/logos-machine.png">\n</div>') # on insère le logo
 	
 	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + +
 	
 	# et les mentions légales
-	output_file.write('<div class="mentions">\n<p>Lectura Plus est un projet coopératif des Villes et Agglomérations d\'Annecy, Bourg-en-Bresse, Chambéry, Clermont-Ferrand, Grenoble, Lyon, Roanne, Saint-Étienne et Valence, réalisé avec le soutien de la DRAC Auvergne-Rhône-Alpes et coordonné par Auvergne-Rhône-Alpes Livre et Lecture.</p>\n</div>')
-	output_file.write('<div class="mentions">\n<p>Un projet imaginé et coordonné par Alizé Buisse et Priscille Legros, Auvergne-Rhône-Alpes Livre et Lecture. Dispositif numérique conçu par Léa Belzunces et Esther Bouquet. Conception graphique menée par Déborah-Loïs Séry. Fabrication artisanale par Guillaume Buisson, Atelier Regards.</p>\n</div>')
+	output_file.write('<div class="mentions">\n<p>ALCA an Nouvelle-Aquitaine est une agence unique couvrant les industries du livre, du cinéma et de l’audiovisuel pour une politique territoriale cohérente, coordonnée et visant tout à la fois l’équilibre géographique des actions en direction des industries culturelles de la nouvelle Région, l’équilibre de sa politique du livre et de l’image animée au service de toutes les populations.</p><p>ALCA est aussi là pour prouver que dans un monde de plus en plus globalisé, numérisé, on peut tirer avantage de la disparition des barrières et rassembler le plus grand nombre autour d’un enjeu de civilisation : la préservation de nos singularités culturelles.</p>\n</div>')
+	output_file.write('<div class="mentions">\n<p>Un projet adapté de "L\'Exprimante" Lectura Plus</p>\n</div>')
 
 	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + +
 		
 	
-	output_file.write('<div class="bloclogo">\n<img src="../assets/blog-logo-complet.jpg">\n</div>')
+	output_file.write('<div class="bloclogo">\n<img src="../assets/logos-admin.png">\n</div>')
 	
 	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + +
 	
@@ -35,18 +35,6 @@ def vertical(formatted_filename, output_file):
 def horizontal (formatted_filename, output_file):	
 
 	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
-		
-	#output_file.write('<div class="rotate">\n')
-	#output_file.write('<div class="bloc1">\n')
-	#output_file.write('<div class="ticket">\n<p>Un ticket de presse ancienne proposé par Lectura Plus, le site du patrimoine écrit et graphique en Auvergne-Rhône-Alpes.<br>À lire dans la minute ! Pour plus de découvertes, rendez-vous sur <u>www.lectura.plus</u></p>\n</div>')
-	#output_file.write('<div class="italic">\n<p>Ticket lecteur à conserver - ne pas jeter sur la voie publique</p>\n</div>')
-	
-	#output_file.write('<div class="mentions">\n<p>Lectura Plus est un projet coopératif des Villes et Agglomérations d\'Annecy, Bourg-en-Bresse, Chambéry, Clermont-Ferrand, Grenoble, Lyon, Roanne, Saint-Étienne et Valence, réalisé avec le soutien de la DRAC Auvergne-Rhône-Alpes et coordonné par Auvergne-Rhône-Alpes Livre et Lecture.</p>\n</div>\n</div>\n')
-	#output_file.write('<div class="bloc2">\n')
-	#output_file.write('<div class="mentions">\n<p>Un projet imaginé et coordonné par Alizé Buisse et Priscille Legros, Auvergne-Rhône-Alpes Livre et Lecture. Dispositif numérique conçu par Léa Belzunces et Esther Bouquet. Conception graphique menée par Déborah-Loïs Séry. Fabrication artisanale par Guillaume Buisson, Atelier Regards.</p>\n</div>')	
-	#output_file.write('<div class="blocplus">\n<img src="../assets/element-barre.png">\n</div>')	
-	#output_file.write('<div class="logoL">\n<img src="../assets/LogoL.png">\n</div>\n</div>') # on insère le logo
-	#output_file.write("</div>")
 	output_file.write('<div class="footer">\n<img src="../assets/bloc-footer-ok.jpg">\n</div>')
 	output_file.write('<div class="blocplus special">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + + 
 	output_file.write('<div class="blocplus special2">\n<img src="../assets/blog-logo-complet-horizontal.jpg">\n</div>') # ligne + + + + +

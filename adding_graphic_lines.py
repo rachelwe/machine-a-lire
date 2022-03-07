@@ -5,12 +5,12 @@
 
 def add(contentInHtml):
 	#print(contentInHtml) #debug - print bien une str avec balises html
-	contentInHtml = contentInHtml.replace('</div>', '</div>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
-	contentInHtml = contentInHtml.replace('</h6>', '</h6>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
-	if '<h2>' in contentInHtml:
-		contentInHtml = contentInHtml.replace('</h2>', '</h2>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
+	# contentInHtml = contentInHtml.replace('</div>', '</div>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
+	# contentInHtml = contentInHtml.replace('</h6>', '</h6>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
+	# if '<h2>' in contentInHtml:
+	# 	contentInHtml = contentInHtml.replace('</h2>', '</h2>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
 		#print("found h2")
-	else:
-		contentInHtml = contentInHtml.replace('</h1>', '</h1>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
+	# else:
+	# 	contentInHtml = contentInHtml.replace('</h1>', '</h1>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
 		#print("only h1, no h2")
 	return(contentInHtml)

@@ -22,6 +22,13 @@ an open-source old newspapers distributor based on the project "L'Exprimante". ð
 - Install flask `sudo pip install flask`
 - follow the same process used for `copy.service` (end of readme) with webserver.service
 
+### Install screen saver
+- `sudo apt-get install xscreensaver`
+
+### Add images
+- Create an "image" folder on the usb drive
+- add an IMAGE text followed by the file name (without space !)
+
 ## Original project
 
 this project was

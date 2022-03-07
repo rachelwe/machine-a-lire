@@ -8,11 +8,7 @@ if [ -d "/media/pi/AJOUT/articles" ] # Si le dossier /articles existe sur la cl�
 then 
 	echo "Directory ./articles/ exists!"
 	usb='/media/pi/AJOUT/articles/*'
-	#usb='/home/pi/Documents/machine-a-lire/articles/*'
 	# On crée les trois dossiers
-	#mkdir '/Users/leabelzunces/code/machine-a-lire/input'
-	#mkdir '/Users/leabelzunces/code/machine-a-lire/output'
-	#mkdir '/Users/leabelzunces/code/machine-a-lire/images'
 	mkdir '/home/pi/Documents/machine-a-lire/input'
 	mkdir '/home/pi/Documents/machine-a-lire/output'
 
@@ -20,20 +16,29 @@ then
 	then
 		mkdir '/home/pi/Documents/machine-a-lire/images'
 	fi
+
+	if  [ -d "/media/pi/AJOUT/images" ]
+	then
+		if  [ ! -d "/home/pi/Documents/machine-a-lire/articles-images" ]
+		then
+			mkdir '/home/pi/Documents/machine-a-lire/articles-images'
+		fi
+
+		articles_images='/media/pi/AJOUT/images/*'
+		articles_images_output='/home/pi/Documents/machine-a-lire/articles-images/'
+
+		# On copie récursivement les fichiers de la clé usb dans le dossier input
+		zenity --notification --text="Copie des images (peut durer plusieurs minutes)..." --display=:0
+		cp -r $articles_images $articles_images_output
+	fi
 	
 	# On les stocke dans des variables
-	#input_folder='/Users/leabelzunces/code/machine-a-lire/input'
-	#output_folder='/Users/leabelzunces/code/machine-a-lire/output'
-	#images_folder='/Users/leabelzunces/code/machine-a-lire/images'
 	input_folder='/home/pi/Documents/machine-a-lire/input/'
 	output_folder='/home/pi/Documents/machine-a-lire/output/'
 	images_folder='home/pi/Documents/machine-a-lire/images/'
-
-	python3 -c 'from led import turnOnGreen; turnOnGreen()' #Allume la led verte au début de la copie et pendant l'encoding
-	echo "leds allumées"
 	
 	# On copie récursivement les fichiers de la clé usb dans le dossier input
-	zenity --notification --text="Copie des fichiers..." --display=:0
+	zenity --notification --text="Copie des articles..." --display=:0
 	cp -r $usb $input_folder
 	
 	#On corrige les noms de fichiers qui contiennent des espaces 
@@ -43,28 +48,19 @@ then
 	zenity --notification --text="Encoding..." --display=:0
 	source /home/pi/Documents/machine-a-lire/encoding.sh
 	echo "encoding terminé"
-	
-	python3 -c 'from led import turnOnYellow; turnOnYellow()' #Allume la led blue au début de la conversion txt>HTML>images
 
 	# On exécute le script python qui convertit les fichiers du dossier input en HTML dans ./output puis en jpg dans ./images
 	zenity --notification --text="Conversion..." --display=:0
 	python3 file_converter.py
 	echo "conversion finie"
 	
-	python3 -c 'from led import turnOffGreen; turnOffGreen()' #Eteint la led verte 
-	python3 -c 'from led import turnOffYellow; turnOffYellow()' # et la led bleue à la fin de la conversion
-	python3 -c 'from led import tranferEnded; tranferEnded()' # transfert terminé avec succès
-	python3 -c 'from led import cleanLed; cleanLed()' # On nettoie les ports utilisés par les leds
-	echo "leds éteintes"
-	
 	# On supprime les dossiers input et output
 	rm -r $input_folder
-	# rm -r $output_folder
+	rm -r $output_folder
 	echo "tout est fini"
 	zenity --notification --text="Traitement terminé !" --display=:0
 	
 else # Si le dossier articles sur AJOUT n'existe pas 
 	echo "Directory ./articles/ doesn't exists!"
-	python3 -c 'from led import errDirMissing; errDirMissing()' # Lance la fonction errDirMissing() dans led.py (fait clignoter la led rouge)
 	zenity --error --text="La clé USB ne contient pas de dossier \"articles\"" --display=:0
 fi

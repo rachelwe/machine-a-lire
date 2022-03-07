@@ -52,8 +52,7 @@ def layout(fullpath, input_folder, subdir, metadatas):
 		
 		output_file.write("<body>\n")
 
-		html = markdown.markdown(contents) 
-		html = adding_graphic_lines.add(html)
+		html = markdown.markdown(contents)
 
 		
 		output_file.write(html) # on insère le HTML converti

@@ -7,7 +7,6 @@ import img_detection # on importe le fichier imgDetection.py, ce qui nous permet
 import qrcodegenerator # on importe le fichier qrcodegenerator.py, ce qui nous permet d'accéder à la fonction extractURL
 import meta_extractor # on importe le fichier qrcodegenerator.py, ce qui nous permet d'accéder à la fonction extractURL
 import txt_to_html # on importe le fichier txt_to_html.py, ce qui nous permet d'accéder à la fonction layout
-import led
 
 # On customise la largeur par défaut créée par wkhtmltopdf qui est de base 1024
 options = {

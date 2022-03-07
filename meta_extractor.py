@@ -16,4 +16,7 @@ def extractMETA(myfile):  # On récupère comme argument le fichier et le nom du
 			meta["bio"] = line.replace('BIO ', '')
 		elif line.startswith("URL "):
 			meta["url"] = line.replace('URL ', '')
+		elif line.startswith("IMAGE "):
+			imgLine = line.replace('IMAGE ', '')
+			meta["img"] = imgLine.replace('\n', '')
 	return meta
