@@ -3,7 +3,6 @@ import json
 import imgkit # à installer à la main via `sudo apt-get install wkhtmltopdf`
 
 # Importation des sous fichiers python dont on a besoin :
-import img_detection # on importe le fichier imgDetection.py, ce qui nous permet d'accéder à la fonction findImg
 import qrcodegenerator # on importe le fichier qrcodegenerator.py, ce qui nous permet d'accéder à la fonction extractURL
 import meta_extractor # on importe le fichier qrcodegenerator.py, ce qui nous permet d'accéder à la fonction extractURL
 import txt_to_html # on importe le fichier txt_to_html.py, ce qui nous permet d'accéder à la fonction layout

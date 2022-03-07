@@ -24,7 +24,7 @@ def rearrangeMardownOrder(myfile, metadatas):
 
 	title = '<h1 class="title">'+metadatas['title']+'</h1>'
 	author = '<p class="author">'+metadatas['author']+'</p>'
-	bio = '<figure class="blocplus">\n<img src="../assets/element-barre.png">\n</figure><p class="bio">'+metadatas['bio']+'</p>'
+	bio = '<figure class="blocplus">\n<img src="../assets/spacer-2.png">\n</figure><p class="bio">'+metadatas['bio']+'</p>'
 
 	if 'img' in metadatas:
 		thumbnail = '<figure class="thumbnail">\n<img src="../articles-images/'+metadatas['img']+'">\n</figure>\n<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>'

@@ -1,12 +1,12 @@
 def vertical(formatted_filename, output_file):
-	output_file.write('<div class="blocplus">\n<img src="../assets/element-barre.png">\n</div>')
+	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-2.png">\n</div>')
 		
 	output_file.write('<div class="ticket">\n<p>Un ticket-poème proposé par La Bibliothèque patrimoniale numérique d\'Alca en nouvelle-Aquitaine. Pour plus de découvertes et pour télécharger des livres numériques gratuitement et librement : <u>alca-nouvelle-aquitaine.fr/fr/catalogue-numerique-patrimonial</u>\n</div>')
 	output_file.write('<div class="italic">\n<p>Ticket lecteur à conserver - ne pas jeter sur la voie publique</p>\n</div>')
 	
 	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + +
 		
-	output_file.write('<div class="logoL">\n<img src="../assets/logos-machine.png">\n</div>') # on insère le logo
+	output_file.write('<div class="logo">\n<img src="../assets/logos-machine.png">\n</div>') # on insère le logo
 	
 	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + +
 	
@@ -21,25 +21,6 @@ def vertical(formatted_filename, output_file):
 	
 	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + +
 	
-	
-	# et le QRcode
-	qrcode = "../input/" + formatted_filename + ".png" # on recrée le chemin d'accès vers le qrcode depuis ./input/
-	output_file.write('<div class="qrcode">\n<img src="' + qrcode + '">\n</div>') # on insère le chemin d'accès du qrcode dans une balise img
-		
-	# F- On écrit la fin de notre balise body
-	output_file.write("\n</body>")
-				
-	# G- On ferme le fichier .html
-	output_file.close() 
-
-def horizontal (formatted_filename, output_file):	
-
-	output_file.write('<div class="blocplus">\n<img src="../assets/spacer-1.png">\n</div>')
-	output_file.write('<div class="footer">\n<img src="../assets/bloc-footer-ok.jpg">\n</div>')
-	output_file.write('<div class="blocplus special">\n<img src="../assets/spacer-1.png">\n</div>') # ligne + + + + + 
-	output_file.write('<div class="blocplus special2">\n<img src="../assets/blog-logo-complet-horizontal.jpg">\n</div>') # ligne + + + + +
-	output_file.write('<div class="bloclogo">\n<img src="../assets/spacer-1.png">\n</div>')
-		
 	
 	# et le QRcode
 	qrcode = "../input/" + formatted_filename + ".png" # on recrée le chemin d'accès vers le qrcode depuis ./input/
