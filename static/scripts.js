@@ -40,6 +40,8 @@ forms.forEach(form => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    notify('success', 'impression en cours...', 2000)
+
     formSubmit({
       node: event.target,
       url: event.target.action,
@@ -51,7 +53,13 @@ forms.forEach(form => {
           });
       },
       callback: function (response) {
-        console.log(response);
+        console.log(response, response == false);
+
+        if (response == false) {
+          notify('danger', '<p>Une erreur est survenue, <br>nous n\'avons pas pu imprimer le document</p>')
+        } else {
+          notify('success', '<p>Merci pour votre intérêt&nbsp;!</p><p>Vous venez d\'imprimer :</p><p>' + response + '</p>')
+        }
       }
     })
   })
@@ -63,6 +71,13 @@ filters.forEach(filter => {
   filter.addEventListener("click", (event) => {
     const category = event.target.getAttribute("data-target");
     if (!category) {return;}
+    filters.forEach(filter => {
+      if (filter == event.target) {
+        filter.classList.add('is-active');
+      } else {
+        filter.classList.remove('is-active');
+      }
+    })
     items.forEach(item => {
       if(item.getAttribute("data-category").includes(category)) {
         item.classList.add('is-active');
@@ -72,3 +87,37 @@ filters.forEach(filter => {
     })
   })
 })
+
+// -----------------------------------------------------------------
+// -- Déclenche une notification
+// -- ex d'utilisation :  
+//      <button onclick="notify('success', 'Vous avez débloqué...');">notification</button>
+//      <div data-notif data-notif-type="success">Texte de la notif</div>
+// ---------------
+// -- La notification ne peut être appelée que sur une page contenant :
+// -- "<div class="toast-center" role="log"></div>"
+// -- Cette div ne peut être ajoutée en JS
+// -- autrement elle ne sera pas détectée par les lecteurs d'écran.
+
+function destroyNotification(element, wrapper) {
+  element.classList.add("is-leaving");
+
+  element.addEventListener("animationend", () => {
+    wrapper.removeChild(element);
+  });
+}
+
+function notify(type, message, length = 6000) {
+  const notificationLog = document.querySelector(".toast-center");
+  const notif = document.createElement("aside");
+  notif.classList.add("toast", `toast--${type}`)
+  notif.innerHTML = message;
+
+  notificationLog.appendChild(notif);
+
+  console.log(notif);
+
+  setTimeout(() => {
+    destroyNotification(notif, notificationLog)
+  }, length);
+}

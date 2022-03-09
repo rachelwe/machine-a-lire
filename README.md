@@ -1,6 +1,10 @@
 # Machine à lire
 an open-source old newspapers distributor based on the project "L'Exprimante". 📃
 
+## Astuces d'utilisation
+- Brancher un clavier et taper `alt+f4` pour sortir du mode kiosque
+  - Vous pouvez maintenant réactiver le wifi et accéder au raspberry à distance 
+
 ## Some modifications applied
 
 ### Activate notifications
@@ -22,8 +26,8 @@ an open-source old newspapers distributor based on the project "L'Exprimante". �
 - Install flask `sudo pip install flask`
 - follow the same process used for `copy.service` (end of readme) with webserver.service
 
-### Install screen saver
-- `sudo apt-get install xscreensaver`
+### Launch kiosque mode
+- https://developers.deepgram.com/blog/2022/01/chromium-kiosk-pi/
 
 ### Add images
 - Create an "image" folder on the usb drive

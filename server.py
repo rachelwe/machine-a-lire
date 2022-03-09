@@ -3,7 +3,7 @@
 Code created by Matt Richardson 
 for details, visit:  http://mattrichardson.com/Raspberry-Pi-Flask/inde...
 '''
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import subprocess
 import os
 import json
@@ -19,19 +19,23 @@ def hello():
 
    templateData = {
       'title' : 'Machine à lire',
-      'description': 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel cumque, facilis vitae accusantium voluptatem quae consequatur alias accusamus nemo autem modi totam sequi mollitia quas earum enim cum minima harum.',
+      'description': 'Un ticket-poème proposé par La Bibliothèque patrimoniale numérique d\'Alca en nouvelle-Aquitaine. Cliquez sur le titre qui vous intéresse pour l\'imprimer !',
       'files': data
    }
    return render_template('index.html', **templateData)
 
 @app.route("/print/<url>")
 def print(url):
-    cmd = ["python3","test.py", url]
+    cmd = ["python3","print.py", url]
     p = subprocess.Popen(cmd, stdout = subprocess.PIPE,
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE)
     out,err = p.communicate()
-    return out
+    return out + err
+
+@app.route('/articles-images/<path:filename>')
+def download_file(filename):
+   return send_from_directory('articles-images', filename, as_attachment=True)
 
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port=8888, debug=True)
