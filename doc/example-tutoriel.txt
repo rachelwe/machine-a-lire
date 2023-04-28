@@ -1,6 +1,6 @@
 CATEGORIE Tutoriel
 
-IMAGE logo-makina.png
+IMAGE logos-machine.png
 
 AUTEUR Rachel Pellin
 

@@ -8,6 +8,8 @@ export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 if [ -f "/media/pi/SUPPR/suppression.txt" ] # si on détecte un fichier suppression.txt dans la clé SUPPR
 then
+	echo "Suppression en cours..."
+	zenity --notification --text="Suppression en cours..." --display=:0
 	sudo rm -rf '/home/pi/Documents/machine-a-lire/images' # on supprime le dossier images/ sur le raspberry
 	sudo rm -rf '/home/pi/Documents/machine-a-lire/articles-images' # on supprime le dossier images/ sur le raspberry
 	zenity --notification --text="Tous les fichiers ont bien été supprimés" --display=:0
