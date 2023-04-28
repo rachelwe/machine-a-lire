@@ -1,0 +1,40 @@
+CATEGORIE Tutoriel
+
+IMAGE logo-makina.png
+
+AUTEUR Rachel Pellin
+
+# Tutoriel d'utilisation de la machine à lire.
+
+Branchez et normalement tout fonctionne ! Si ce n'est pas le cas...
+
+Ouvrez le cadenas de la boite et vérifiez que tout est bien sur "on" : la multiprise et l'imprimante
+
+Vérifiez que tous les fils sont bien branchés (écran, raspberry, imprimante, alimentation)
+
+
+Cliquez sur un livre ou sur le bouton aléatoire pour imprimer.
+
+
+Pour ajouter des textes, remplissez le dossier "articles" de la clé "AJOUT" de .txt formatés comme ce fichier et le dossier "images" des fichiers liés à chaque texte (comme "logo-makina.png" ci-dessus)
+
+il est très important que les éléments : CATEGORIE, IMAGE, AUTEUR, BIO et URL soient écrits en majuscule suivi d'un espace (pas de ":"). Il ne doit pas y avoir de saut de ligne dans ces valeurs.
+
+l'URL/qrcode ci-dessous est celle du code de la machine, accessible en ligne comme celui de Lectura Plus.
+
+Pour supprimer des textes, branchez la clé "SUPPR"
+
+
+Pour sortir du mode "kiosque" (interface qui se lance automatiquement au démarrage), branchez un clavier et tapez "alt+f4".
+
+vous avez désormais accès à l'interface du raspberry avec la possibilité de le connecter au wifi pour le gérer à distance au besoin. La code a été fourni dans la boite.
+
+Pour recharger l'interface après avoir rajouté des éléments, branchez un clavier et tapez "ctrl+r" ou "f5".
+
+
+Pour éteindre la machine, débranchez la ou éteignez la multiprise.
+
+
+BIO Une éventuelle biographie...
+
+URL https://github.com/rachelwe/machine-a-lire
