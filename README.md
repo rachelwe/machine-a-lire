@@ -6,6 +6,7 @@ an open-source old newspapers distributor based on the project "L'Exprimante". �
 - [Tutoriel d'utilisation pour les éditeurs sous forme de ticket prêt à coller dans la clé ajout](./doc/example-tutoriel.txt)
 - [Un format de ticket vide (remplacez les textes entre double crochets `[[...]]`, le texte lorem ipsum correspond au contenu)](./doc/example-vide.txt)
 - [dupliquer la makina](./doc/dupliquer-makina.md)
+- [ajouter et supprimer des textes](./doc/ajouter-supprimer-textes.md)
 
 ## Admin tips
 - Plug a keyboard and press `alt+f4` to exit Kiosk mode
