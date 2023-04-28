@@ -1,9 +1,35 @@
 # Machine à lire
 an open-source old newspapers distributor based on the project "L'Exprimante". 📃
 
-## Astuces d'utilisation
-- Brancher un clavier et taper `alt+f4` pour sortir du mode kiosque
-  - Vous pouvez maintenant réactiver le wifi et accéder au raspberry à distance 
+## Tutorials (in FR)
+
+- [Tutoriel d'utilisation pour les éditeurs sous forme de ticket prêt à coller dans la clé ajout](./doc/example-tutoriel.txt)
+- [Un format de ticket vide (remplacez les textes entre double crochets `[[...]]`, le texte lorem ipsum correspond au contenu)](./doc/example-vide.txt)
+- [dupliquer la makina](./doc/dupliquer-makina.md)
+
+## Admin tips
+- Plug a keyboard and press `alt+f4` to exit Kiosk mode
+  - You can now activate wifi again and access it remotely
+
+- To edit the code more confortably directly on the raspberry you can install `samba` :
+  - `sudo apt update`
+  - `sudo apt-get install samba`
+  - Change the workgroup name to the name of your workgroup & add windows support if needed :
+    - ```
+      workgroup = MYWORKGROUP
+      wins support = yes
+      ```
+    - add this at the end :
+      ```
+      [pishare]
+        comment = Pi Shared Folder
+        path = /home/pi/Documents
+        browsable = yes
+        guest ok = yes
+        writable = yes
+      ```
+  - make the document folder editable : `chmod 777 /home/pi/Documents -R`
+  - restart samba : `sudo /etc/init.d/smbd restart`
 
 ## Some modifications applied
 
@@ -27,7 +53,20 @@ an open-source old newspapers distributor based on the project "L'Exprimante". �
 - follow the same process used for `copy.service` (end of readme) with webserver.service
 
 ### Launch kiosque mode
-- https://developers.deepgram.com/blog/2022/01/chromium-kiosk-pi/
+Source : https://developers.deepgram.com/blog/2022/01/chromium-kiosk-pi/
+
+- `sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
+- This will open a new text file which will be executed when the desktop environment (LXDE) launches. In the file type the following:
+```
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+
+@xset s off
+@xset -dpms
+@xset s noblank
+
+@chromium-browser --kiosk http://localhost:8888/
+```
 
 ### Add images
 - Create an "image" folder on the usb drive
