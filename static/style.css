@@ -45,6 +45,7 @@ nav button {
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-align: left;
 }
 
 nav button.is-active {
