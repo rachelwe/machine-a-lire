@@ -33,4 +33,4 @@ def layout(fullpath, input_folder, subdir, metadatas):
 	
 	output_file.write(html) # on insère le HTML converti
 
-	add_footer.vertical(formatted_filename, output_file)
+	add_footer.vertical(formatted_filename, output_file, metadatas)
