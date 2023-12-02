@@ -20,7 +20,7 @@ def hello():
 
    templateData = {
       'title' : 'Machine à lire',
-      'description': 'Un ticket-poème proposé par La Bibliothèque patrimoniale numérique d\'Alca en nouvelle-Aquitaine. Cliquez sur le titre qui vous intéresse pour l\'imprimer !',
+      'description': 'Un ticket-voyage proposé par La Bibilothèque patrimoniale numérique d\'Alca en nouvelle-Aquitaine. Cliquez sur le titre qui vous intéresse pour l\'imprimer !',
       'files': data
    }
    return render_template('index.html', **templateData)
