@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MOUNT_FOLDER='/media/pi'
+MOUNT_FOLDER='/media/alca'
 
 inotifywait --monitor --quiet --event create $MOUNT_FOLDER | \
 while read event; do
@@ -8,10 +8,10 @@ while read event; do
 	
 	if [[ $folder == "AJOUT" ]]; then
 		sleep 5
-		source /home/pi/Documents/machine-a-lire/copy_from_usb.sh
+		source /home/alca/Documents/machine-a-lire/copy_from_usb.sh
 	elif [[ $folder == "SUPPR" ]]; then
 		sleep 5
-		source /home/pi/Documents/machine-a-lire/delete_from_usb.sh
+		source /home/alca/Documents/machine-a-lire/delete_from_usb.sh
 	else
 		echo "clé usb non reconnue"
 	fi

@@ -1,4 +1,4 @@
 #!/bin/sh
 cd /
-cd /home/pi/Documents/machine-a-lire
+cd /home/alca/Documents/machine-a-lire
 python3 server.py

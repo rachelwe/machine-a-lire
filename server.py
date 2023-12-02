@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 '''
 Code created by Matt Richardson 
 for details, visit:  http://mattrichardson.com/Raspberry-Pi-Flask/inde...
@@ -12,7 +13,7 @@ app = Flask(__name__)
 def hello():
    
    # Get the list of all files and directories
-   path = "/home/pi/Documents/machine-a-lire/images/list.json"
+   path = "/home/alca/Documents/machine-a-lire/images/list.json"
 
    with open(path) as f:
       data = json.load(f)

@@ -4,13 +4,13 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/pi/Documents
-ExecStart=/bin/bash /home/pi/Documents/machine-a-lire/launch_server.sh
+WorkingDirectory=/home/alca/Documents
+ExecStart=/bin/bash /home/alca/Documents/machine-a-lire/launch_server.sh
 #Si on veut voir les logs en cas d'erreur:
 StandardOutput=inherit
 StandardError=inherit
 #StandardOutput=null
-User=pi
+User=alca
 Restart=always
 
 [Install]

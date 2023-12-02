@@ -6,12 +6,12 @@ export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 # POUR EFFACER LES ARTICLES-IMAGES PRESENTS SUR LE RASPBERRY
 
-if [ -f "/media/pi/SUPPR/suppression.txt" ] # si on détecte un fichier suppression.txt dans la clé SUPPR
+if [ -f "/media/alca/SUPPR/suppression.txt" ] # si on détecte un fichier suppression.txt dans la clé SUPPR
 then
 	echo "Suppression en cours..."
 	zenity --notification --text="Suppression en cours..." --display=:0
-	sudo rm -rf '/home/pi/Documents/machine-a-lire/images' # on supprime le dossier images/ sur le raspberry
-	sudo rm -rf '/home/pi/Documents/machine-a-lire/articles-images' # on supprime le dossier images/ sur le raspberry
+	sudo rm -rf '/home/alca/Documents/machine-a-lire/images' # on supprime le dossier images/ sur le raspberry
+	sudo rm -rf '/home/alca/Documents/machine-a-lire/articles-images' # on supprime le dossier images/ sur le raspberry
 	zenity --notification --text="Tous les fichiers ont bien été supprimés" --display=:0
 else # Si le fichier suppression.txt n'existe pas sur SUPPR
 	echo "File suppression.txt doesn't exists!"

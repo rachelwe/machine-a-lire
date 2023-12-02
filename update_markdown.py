@@ -43,4 +43,4 @@ def rearrangeMardownOrder(myfile, metadatas):
 	fin.write(header+thumbnail+title+author+data+bio) # On  écrit toutes les modifications contenues dans data
 	fin.close() # On ferme, ce qui enregistre
 
-#rearrangeMardownOrder('/home/pi/Documents/machine-a-lire/articles/ALIMENTATION-18860115-ARROSOIR-p1-la-republique-est-morte.txt')
+#rearrangeMardownOrder('/home/alca/Documents/machine-a-lire/articles/ALIMENTATION-18860115-ARROSOIR-p1-la-republique-est-morte.txt')

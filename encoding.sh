@@ -1,6 +1,6 @@
 #!/bin/bash
 
-input_folder='/home/pi/Documents/machine-a-lire/input'
+input_folder='/home/alca/Documents/machine-a-lire/input'
 
 utf="utf-8"
 

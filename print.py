@@ -9,7 +9,7 @@ from PIL import Image
 p = Usb(0x04b8, 0x0e28, 0)
 
 # Get the list of all files and directories
-path = "/home/pi/Documents/machine-a-lire/images/list.json"
+path = "/home/alca/Documents/machine-a-lire/images/list.json"
 
 with open(path) as f:
 		data = json.load(f)
@@ -23,7 +23,7 @@ def printFile():
 			random_index = random.randint(0, len(data) - 1);
 			selected = list(data)[random_index]
 
-			article = Image.open("/home/pi/Documents/machine-a-lire/images/" + selected + ".jpg")
+			article = Image.open("/home/alca/Documents/machine-a-lire/images/" + selected + ".jpg")
 			article = article.rotate(180)
 			p.image(article) # article is the fullpath of the selected article
 			p.cut()
@@ -31,7 +31,7 @@ def printFile():
 			print(data[selected]['title'])
 		else:
 			try:
-					article = Image.open("/home/pi/Documents/machine-a-lire/images/" + sys.argv[1] + ".jpg")
+					article = Image.open("/home/alca/Documents/machine-a-lire/images/" + sys.argv[1] + ".jpg")
 					article = article.rotate(180)
 					p.image(article) # article is the fullpath of the selected article
 					p.cut()
