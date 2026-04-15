@@ -1,0 +1,21 @@
+# EXEMPLE DE FICHIER DE CONFIGURATION POUR L'AFFICHAGE DES COLLECTIONS
+# Le fichier devra s'appeler "config.yml" et être placé à la racine du dossier "collections" sur la clé AJOUT (ex: "collections/config.yml")
+
+# -----------------------------------------
+# Configuration de l'affichage des collections
+# -----------------------------------------
+# ATTENTION : le contenu de ce fichier écrasera la configuration actuelle de la machine. Si vous l'aviez modifiée, pensez à modifier ce fichier ou à reproduire les changements que vous aviez faits dans l'interface au démarrage.
+
+# Autorise le changement de collection au visiteur 
+# en ajoutant un lien "voir toutes les collections" dans chaque collection
+# La page affichée n'aura pas les options d'admin (ajout de "?visiteur" dans l'url)
+# Si vrai : "true", sinon "false" - sans guillemets 
+changementCollectionPossible: true
+# Permet d'afficher une collection par défaut au démarrage de la machine
+# il y a un délais de 1 minute pour laisser la possibilité de modifier les options graphiquement avant le chargement de la collection
+# valeur : le nom du dossier de la collection entre guillemets (ex: "autrices")
+collectionParDefaut: "autrices"
+# Texte affiché dans l'interface de choix de collection
+texteChoixCollection: "Choisissez la collection que vous souhaitez explorer"
+# Modèle d'imprimante (TM-T20III OU TM-T20IV)
+imprimante: TM-T20III

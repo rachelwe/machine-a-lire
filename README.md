@@ -1,6 +1,10 @@
 # Machine à lire
 an open-source old newspapers distributor based on the project "L'Exprimante". 📃
 
+## Ideas for future improvements
+
+- displaying a notification to manually validate if the usb key action is performed.
+
 ## Tutorials (in FR)
 
 - [Tutoriel d'utilisation pour les éditeurs sous forme de ticket prêt à coller dans la clé ajout](./doc/example-tutoriel.txt)
@@ -35,6 +39,7 @@ an open-source old newspapers distributor based on the project "L'Exprimante". �
 ## Some modifications applied
 
 ### Activate notifications
+- Deactivate native modal when a usb is plugged : go to `files > édition > préférences > gestion des supports amovibles > décocher "Afficher les options disponibles pour les supports amovibles quand ils sont insérés"`
 - Install the notification daemon `sudo apt-get install notification-daemon`
 - Install spi2 `sudo apt-get install at-spi2-core`
 - Add it to the list of services :
@@ -51,7 +56,11 @@ an open-source old newspapers distributor based on the project "L'Exprimante". �
 
 ### Add webserver
 - Install flask `sudo pip install flask`
+- Install PyYAML `sudo pip install PyYAML` (might already be installed)
 - follow the same process used for `copy.service` (end of readme) with webserver.service
+
+### Switch to md with frontmatter syntax
+- Install frontmatter `pip install python-frontmatter`
 
 ### Launch kiosque mode
 Source : https://developers.deepgram.com/blog/2022/01/chromium-kiosk-pi/

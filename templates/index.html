@@ -5,43 +5,112 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="../static/style.css/">
-      <script src="../static/scripts.js" defer></script>
+      <meta http-equiv="Cache-control" content="no-cache">
+      <meta http-equiv="Expires" content="-1">
+      <link rel="stylesheet" href="../static/style.css?{{ current_datetime }}">
+      <script src="../static/scripts.js?{{ current_datetime }}" defer></script>
+
+      <script>
+         const defaultCollection = '{{ config["collectionParDefaut"] }}';
+         const collections = {{ collections|tojson }};     
+         const collectionsUrls = collections.map(value => value.path);
+         
+
+         document.addEventListener("DOMContentLoaded", () => {
+            if (defaultCollection && collectionsUrls.includes(defaultCollection) && !window.location.search.includes('visiteur')) {
+               let countdown = 60;
+               const countdownElement = document.createElement('div');
+               countdownElement.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #333; color: #fff; padding: 10px 15px; border-radius: 5px; font-size: 14px; z-index: 1000;';
+               document.body.appendChild(countdownElement);
+               
+               const updateCountdown = () => {
+                  countdownElement.textContent = `Redirection dans ${countdown}s`;
+                  countdown--;
+                  if (countdown < 0) {
+                     clearInterval(countdownInterval);
+                     window.location.href = '/' + defaultCollection;
+                  }
+               };
+               
+               updateCountdown();
+               const countdownInterval = setInterval(updateCountdown, 1000);
+            }
+            if (!window.location.search.includes('visiteur')) {
+               document.querySelector('[data-admin]').removeAttribute('hidden');
+            }
+         })
+      </script>
    </head>
+   {% if collections %}
    <body>
+      {% include "errors_list.html" %}
       <header>
-         <h1><svg width="70%" height="100%" viewBox="0 0 220 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><text style="font-family:'CorporateS-Medium', 'Corporate S', sans-serif;font-weight:500;font-size:64px;" y="50px" x="-5px">Makina</text><text style="font-family:'CorporateS-Bold', 'Corporate S', sans-serif;font-weight:700;font-size:77px;" y="120px" x="-5px">Bellét</text></svg></h1>
-         <p>{{ description }}</p>
-         <form action="/print/random" method="get" style="font-weight: 700;">
-            <button type="submit" class="random"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" clip-rule="evenodd" viewBox="0 0 433 398">
-               <path fill-rule="nonzero" d="M0 334h101l197-225h49l-32 32 31 32 87-87-87-86-31 32 32 32h-69L81 289H0v45Zm138-162 33-30-70-78H0v45h81l57 63Z"/>
-               <path fill-rule="nonzero" d="m346 225-31 32 32 32h-49l-57-63-33 30 70 78h69l-32 32 31 32 87-86-87-87Z"/>
-             </svg>
-             Aléatoire
-             </button>
-         </form>
-         <nav>
-            <h2>Catégories</h2>
-            <ul>
-               <li><button data-target="all" class="is-active">Tous</button></li>
-               {% for category, item in files.values()|groupby("category") %}
-                  <li><button data-target="{{ category|urlencode }}">{{ category }}</button></li>
-               {% endfor %}
-            </ul>
-         </nav>
-         <img src="/static/logos-machine.png" alt="">
-         <img src="/static/logos-admin.png" alt="">
+         <h1 data-reload><svg width="70%" height="100%" viewBox="0 0 220 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><text style="font-family:'CorporateS-Medium', 'Corporate S', sans-serif;font-weight:500;font-size:64px;" y="50px" x="-5px">Makina</text><text style="font-family:'CorporateS-Bold', 'Corporate S', sans-serif;font-weight:700;font-size:77px;" y="120px" x="-5px">Bellét</text></svg></h1>
+         <p>{{ config["texteChoixCollection"] }}</p>
+         <div data-admin hidden class="mbl">
+            <hr>
+            <h2>Administration</h2>
+            <p>Cette partie s'affiche uniquement au démarrage de la machine, pour les administrateurs. </p><p>Une fois la collection sélectionnée, il n'est plus possible de revenir en arrière à moins de redémarrer la machine SAUF si l'option <code>changementCollectionPossible</code> est activée dans la configuration (<code>true</code>) ou dans le formulaire ci-dessous.</p>
+
+            <h3 class="mb0">Modifier la configuration</h3>
+            <p class="text-light text-small mt0">Les modifications prendront effet dès que vous aurez cliqué sur "enregistrer" en bas du formulaire.</p>
+            <form action="/config" method="post">
+               <div class="field">
+                  <label for="changementCollectionPossible">
+                     <input type="checkbox" name="changementCollectionPossible" id="changementCollectionPossible" {% if config["changementCollectionPossible"] %}checked{% endif %}>
+                     Les visiteurs peuvent changer de collection</label>
+               </div>
+
+               <div class="field">
+                  <label for="collectionParDefaut" id="collectionParDefaut-label">Collection par défaut au démarrage</label>
+                  <select name="collectionParDefaut" id="collectionParDefaut">
+                     <option value="">Aucune</option>
+                     {% for item in collections %}
+                        <option value="{{ item['path'] }}" {% if config["collectionParDefaut"] == item["path"] %}selected{% endif %}>{{ item['collectionNom'] }}</option>
+                     {% endfor %}
+                  </select>
+                  <p class="text-light text-small mt0 mb0" aria-describedby="collectionParDefaut-label">Redirige vers la collection automatiquement au bout de 60 secondes (voir le décompte en haut à droite).</p>
+               </div>
+               <div class="field">
+                  <label for="imprimante" id="imprimante-label">Modèle de l'imprimante</label>
+                  <select name="imprimante" id="imprimante">
+                     <option value="TM-T20III" {% if config["imprimante"] == "TM-T20III" %}selected{% endif %}>Epson TM-T20III</option>
+                     <option value="TM-T20IV" {% if config["imprimante"] == "TM-T20IV" %}selected{% endif %}>Epson TM-T20IV</option>
+                  </select>
+                  <p class="text-light text-small mt0 mb0" aria-describedby="imprimante-label">Ces imprimantes sont les seules compatibles à ce jour. Ne pas modifier sauf indication contraire.</p>
+               </div>
+               <div class="field">
+                  <button type="submit" class="reload">Enregistrer</button>
+               </div>
+            </form>
+         </div>
+         <!-- <img src="/static/logos-machine.png" alt="">
+         <img src="/static/logos-admin.png" alt=""> -->
       </header>
       <ul class="datas">
-         {% for item in files %}
-            <li data-category="{{ files[item].category|urlencode }} all" class="is-active" style="background-image: url({{ url_for('download_file', filename=files[item].img) }});">
-               <form action="/print/{{ item }}" method="get" style="font-weight: 700;">
-                  <button type="submit">{{ files[item].title }}</button>
-               </form>
-               <p class="meta">{{ files[item].author }} - {{ files[item].category }}</p>
+         {% for item in collections %}
+            <li>
+               <a class="collection" href="/{{ item['path'] }}">
+                  <p class="collection_name">{{ item['collectionNom'] }}</p>
+                  <p class="collection_count mt0">{{ item['textCount'] }} textes</p>
+               </a>
             </li>
          {% endfor %}
       </ul>
+      {% else %}
+      <body class="has-error">
+         <div class="error-card">
+            <div class="error-card-header">
+               <h1 data-reload style="margin-top: 0;"><svg width="130px" height="100%" viewBox="0 0 220 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><text style="font-family:'CorporateS-Medium', 'Corporate S', sans-serif;font-weight:500;font-size:64px;" y="50px" x="-5px">Makina</text><text style="font-family:'CorporateS-Bold', 'Corporate S', sans-serif;font-weight:700;font-size:77px;" y="120px" x="-5px">Bellét</text></svg></h1>
+               <button class="reload" data-reload><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000"><defs><style>.cls-63ce7424ea57ea6c838005b0-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><polyline class="cls-63ce7424ea57ea6c838005b0-1" points="23.5 20.63 17.75 20.63 17.75 14.88"></polyline><polyline class="cls-63ce7424ea57ea6c838005b0-1" points="0.5 3.38 6.25 3.38 6.25 9.13"></polyline><path class="cls-63ce7424ea57ea6c838005b0-1" d="M9.23,1.83A10.12,10.12,0,0,1,12,1.46a10.54,10.54,0,0,1,6.06,19.16"></path><path class="cls-63ce7424ea57ea6c838005b0-1" d="M14.77,22.17a10.12,10.12,0,0,1-2.77.37A10.54,10.54,0,0,1,5.94,3.38"></path></svg> Recharger la page</button>
+            </div>
+
+            <h2 style="font-size: 2.5rem;">Il n'y a pas de collections sur cette machine</h2>
+            
+            {% include "error_screen.html" %}
+         
+         </div>
+      {% endif %}
       <div class="toast-center" role="log"></div>
    </body>
 </html>

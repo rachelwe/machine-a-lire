@@ -1,10 +1,13 @@
 #!/bin/bash
 
-input_folder='/home/pi/Documents/machine-a-lire/input'
+input_folder="${1:-.}"
 
 utf="utf-8"
 
-for files in $input_folder/*.txt; # for txt files in input
+# Sans cela on a une erreur lorsqu'il n'y a pas de .txt par exemple, alors qu'on essaye juste de rester compatible avec les 2 formats.
+shopt -s nullglob
+
+for files in $input_folder/*.md $input_folder/*.txt
 do
 	sed -i "s/\’/\'/g" $files #remplace les quotations marks en cp1252 par des apostrophes ce qui évite les problèmes réencodage cp1252>utf-8
 	sed -i "s/\œ/\oe/g" $files

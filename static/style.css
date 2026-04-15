@@ -1,8 +1,12 @@
 body {
-  margin: 2rem auto;
+  margin: 1rem auto;
   font-family: 'Corporate S', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding-right: 8rem;
   padding-left: 20rem;
+}
+
+body.has-error {
+  padding: 1rem;
 }
 
 header {
@@ -123,7 +127,7 @@ button {font-family: inherit;}
 }
 
 .toast--danger {
-  background: rgb(227,6,19);
+  background: #C41E1E;
   color: #fff;
 }
 
@@ -186,13 +190,199 @@ h1 {
   margin-bottom: 0;
 }
 
+[data-reload] {
+  cursor: pointer;
+}
+
 h1 svg {
   vertical-align: middle;
 }
 
 img {max-width: 100%;}
 
+.error-card {
+  border: 2px solid #C41E1E;
+  background-color: #ffeeee;
+  padding: 3rem;
+  border-radius: 4px;
+  margin: 0 auto;
+  max-width: 90ch;
+}
 
+.error-card p,
+.error-card li {
+  margin: 1rem 0;
+}
+
+.error-card h2 {
+  text-align: center;
+  color: #C41E1E;
+}
+
+.error-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.errors-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.errors-table th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: bold;
+  color: #C41E1E;
+  background-color: #ffd9d9;
+}
+
+.errors-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ffcccc;
+}
+
+.errors-table code {
+  background-color: #fff;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  color: #C41E1E;
+  font-family: monospace;
+}
+
+.errors-table tbody tr:nth-of-type(even) {
+  background-color: #ffd9d952;
+}
+
+.reload,
+.button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .3rem;
+}
+
+.reload svg,
+.button svg {
+  color: inherit;
+  fill: currentColor;
+  height: 2em;
+  line-height: 1;
+  width: 2em;
+}
+
+.button--danger {
+  flex-direction: row;
+  background: #C41E1E;
+  color: #fff;
+  margin-left: auto;
+  padding-top: .5rem;
+}
+
+.button--danger svg {
+  height: 1em;
+  width: 1em;
+  margin-top: -3px;
+}
+
+.error-actions {
+  margin-top: 2rem;
+  text-align: right;
+  max-width: 25rem;
+  margin-left: auto;
+}
+
+.collection {
+  padding: 1rem 2rem;
+  background-color: #f2dc00;
+  border-radius: 10px;
+  display: block;
+  color: black;
+  text-decoration: none;
+}
+
+.collection_name {
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.collection-name {
+  text-transform: uppercase;
+  color: #333;
+  font-weight: bold;
+  flex: 1 1 min-content;
+}
+
+.collection-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.button--link {
+  /* background: #f2f2f2; */
+  text-transform: uppercase;
+  color: #6a6a6a;
+  text-decoration: none;
+  /* border-radius: 10px; */
+  /* border: 2px solid #000; */
+  /* padding: .5rem 1rem; */
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex: 1 1 fit-content;
+  margin-left: auto;
+  max-width: max-content;
+}
+
+.mt0 {margin-top: 0;}
+.mb0 {margin-bottom: 0;}
+.mbl {margin-bottom: 3rem;}
+.pam {padding: 2rem;}
+.text-light {color: #555;}
+.text-small {font-size: 0.8em;}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.field + .field {
+  margin: 1rem 0;
+}
+
+.field label {
+  font-weight: 500;
+}
+
+.field select {
+  padding: .75rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+select::picker-icon {
+  padding-right: .75rem;
+}
 
 @font-face {
   font-family : "Corporate S";
