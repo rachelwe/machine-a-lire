@@ -17,10 +17,10 @@ while read event; do
 	
 	if [[ $folder == "AJOUT" ]]; then
 		sleep 5
-		source /home/alca/Documents/machine-a-lire/copy_from_usb.sh
+		source /home/pi/Documents/machine-a-lire/copy_from_usb.sh
 	elif [[ $folder == "SUPPR" ]]; then
 		sleep 5
-		source /home/alca/Documents/machine-a-lire/delete_from_usb.sh
+		source /home/pi/Documents/machine-a-lire/delete_from_usb.sh
 	else
 		zenity --error --text="La clé n'est pas reconnue.\n\nla clé usb n'a pas été renommée correctement \n(\"AJOUT\" ou \"SUPPR\", selon l'usage souhaité)." --width=400 --display=:0
 		echo "clé usb non reconnue"

@@ -30,12 +30,12 @@ an open-source old newspapers distributor, a project by ALCA Nouvelle-Aquitaine 
       ```
       [pishare]
         comment = Pi Shared Folder
-        path = /home/alca/Documents
+        path = /home/pi/Documents
         browsable = yes
         guest ok = yes
         writable = yes
       ```
-  - make the document folder editable : `chmod 777 /home/alca/Documents -R`
+  - make the document folder editable : `chmod 777 /home/pi/Documents -R`
   - restart samba : `sudo /etc/init.d/smbd restart`
 
 ## Some modifications applied
