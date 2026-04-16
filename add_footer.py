@@ -29,9 +29,10 @@ def vertical(formatted_filename, output_file, metadatas, collection):
 		output_file.write('<div class="blocplus">\n<img src="../../assets/spacer-1.png">\n</div>') # ligne + + + + +
 	
 	
-	# et le QRcode
-	qrcode = "../../input/" + collection + "/" + formatted_filename + ".png" # on recrée le chemin d'accès vers le qrcode depuis ./input/
-	output_file.write('<div class="qrcode">\n<img src="' + qrcode + '">\n</div><p class="url">\n' + metadatas['url'] + '\n</p>') # on insère le chemin d'accès du qrcode dans une balise img et on affiche l'url en clair à la suite
+	# et le QRcode (seulement si une URL est présente)
+	if metadatas['url']:
+		qrcode = "../../input/" + collection + "/" + formatted_filename + ".png" # on recrée le chemin d'accès vers le qrcode depuis ./input/
+		output_file.write('<div class="qrcode">\n<img src="' + qrcode + '">\n</div><p class="url">\n' + metadatas['url'] + '\n</p>') # on insère le chemin d'accès du qrcode dans une balise img et on affiche l'url en clair à la suite
 		
 	# F- On écrit la fin de notre balise body
 	output_file.write("\n</body>")

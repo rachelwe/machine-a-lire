@@ -61,12 +61,13 @@ for subdir, dirs, files in os.walk(input_folder): # Pour chaque chemin, dossiers
 				error_handler.log_error(sys.argv[1], filename, 'lecture', f"Erreur lors de la lecture du fichier: {str(e)}")
 				continue
 			
-			# 2- Génération du QR code
-			try:
-				qrcodegenerator.createQrCode(metadatas['url'], filename, sys.argv[1])
-			except Exception as e:
-				error_handler.log_error(sys.argv[1], filename, 'qrcode', f"Erreur lors de la génération du QR code: {str(e)}")
-				continue
+			# 2- Génération du QR code (seulement si l'URL n'est pas vide)
+			if metadatas['url']:
+				try:
+					qrcodegenerator.createQrCode(metadatas['url'], filename, sys.argv[1])
+				except Exception as e:
+					error_handler.log_error(sys.argv[1], filename, 'qrcode', f"Erreur lors de la génération du QR code: {str(e)}")
+					continue
 			
 			# 3- On convertit 'input/filename.txt|md' > 'output/filename.html'
 			try:

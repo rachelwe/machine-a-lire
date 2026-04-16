@@ -23,8 +23,8 @@ def extractMETA(myfile, collection=""):
 			body = post.content  # Extraire le contenu (body) sans le frontmatter
 			
 			# Valider les clés requises
-			required_keys = ['titre', 'auteur', 'categorie', 'url']
-			optional_keys = ['image', 'bio']
+			required_keys = ['titre', 'auteur', 'categorie']
+			optional_keys = ['url', 'image', 'bio']
 			valid_keys = set(required_keys + optional_keys)
 			
 			# Vérifier les clés non supportées
@@ -46,6 +46,10 @@ def extractMETA(myfile, collection=""):
 			for key in meta:
 				if isinstance(meta[key], str):
 					meta[key] = meta[key].strip()
+			
+			# url est optionnel, mettre à '' par défaut si absent
+			if 'url' not in meta:
+				meta['url'] = ''
 			
 			# image et bio sont optionnels, mettre à '' par défaut si absent
 			if 'image' not in meta:
