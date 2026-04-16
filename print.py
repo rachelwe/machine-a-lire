@@ -47,7 +47,7 @@ def printFile():
 					p.image(article) # article is the fullpath of the selected article
 					p.cut()
 
-					print(data[sys.argv[2]]['title'])
+					print(data[sys.argv[2]]['titre'])
 			except OSError:
 					print('')
 	else:
