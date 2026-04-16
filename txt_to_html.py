@@ -1,36 +1,60 @@
 import os
 import markdown # à installer à la main via `sudo apt-get install python3-markdown`
-import update_markdown
 import add_footer
 
-# Fonction qui convertit notre fichier .txt courant dans ./input/ avec du texte en markdown à l'intérieur,
+# Fonction qui convertit notre fichier .txt/.md dans ./input/ 
+# avec du texte en markdown à l'intérieur,
 # en fichier .html balisé dans ./output/
-def layout(fullpath, input_folder, subdir, metadatas):
+def layout(fullpath, collection, metadatas, body):
 	print("layout :" + fullpath)
-	update_markdown.rearrangeMardownOrder(fullpath, metadatas) # on reformate le markdown utilisé pour un autre plus lisible
+	# Récupérer le nom du fichier sans extension
+	filename = os.path.basename(fullpath)
+	formatted_filename = os.path.splitext(filename)[0]
 	
-	# A- On ouvre le fichier pour récupérer le contenu
-	with open(fullpath, 'r') as myfile:
-
-		contents = myfile.read() # on récupère le contenu dans la variable contents
-		#print('le fichier contient : '+contents) # debug
-		filename = os.path.basename(myfile.name) # on récupère le chemin d'accès au fichier
-
-	formatted_filename = os.path.splitext(filename)[0] # on retire l'extension (.txt) du nom+chemin d'accès du fichier
-				
-	# B- On crée et ouvre un fichier .html avec le même nom formaté que le fichier .txt actuel dans le dossier ./output/
-	output_file = open(r'./output/'+formatted_filename+'.html', 'w') # avec les droits d'écriture
-
-	# C- On ajoute et/ou crée le contenu
-	header = r"<head><meta charset='UTF-8'><title>"+formatted_filename+"</title><link href='../stylesheet.css' rel='stylesheet'>\n</head>\n" # on charge stylesheet.css / white background & v display
-
-	output_file.write(header) # et on l'écrit dans le fichier                                                   	
+	# Créer le fichier output HTML
+	output_path = r'./output/' + collection + '/' + formatted_filename + '.html'
+	output_file = open(output_path, 'w', encoding='utf-8')
 	
-	output_file.write("<body>\n")
-
-	html = markdown.markdown(contents)
-
+	# 1- HEADER avec layout CSS
+	header = (
+		'<head><meta charset="UTF-8"><title>' + metadatas['titre'] + '</title>'
+		'<link href="../../stylesheet.css" rel="stylesheet"></head>\n'
+	)
+	output_file.write(header)
+	output_file.write('<body>\n')
 	
-	output_file.write(html) # on insère le HTML converti
-
-	add_footer.vertical(formatted_filename, output_file, metadatas)
+	# 2- HEADER HTML avec catégorie
+	header_html = '<header class="entete">\n<p class="tag">' + metadatas['categorie'] + '</p>\n</header>\n'
+	output_file.write(header_html)
+	
+	# 3- THUMBNAIL (si image disponible)
+	if metadatas['image']:
+		thumbnail = (
+			'<figure class="thumbnail">\n'
+			'<img src="../../articles-images/' + collection + '/' + metadatas['image'] + '">\n'
+			'</figure>\n<div class="blocplus">\n<img src="../../assets/spacer-1.png">\n</div>\n'
+		)
+		output_file.write(thumbnail)
+	
+	# 4- TITLE
+	title_html = '<h1 class="title">' + metadatas['titre'] + '</h1>\n'
+	output_file.write(title_html)
+	
+	# 5- AUTHOR
+	author_html = '<p class="author">' + metadatas['auteur'] + '</p>\n'
+	output_file.write(author_html)
+	
+	# 6- BODY (convertir le markdown en HTML)
+	body_html = markdown.markdown(body.strip())
+	output_file.write(body_html + '\n')
+	
+	# 7- BIO (si disponible)
+	if metadatas['bio']:
+		bio_html = (
+			'<figure class="blocplus">\n<img src="../../assets/spacer-2.png">\n</figure>'
+			'<p class="bio">' + metadatas['bio'] + '</p>\n'
+		)
+		output_file.write(bio_html)
+	
+	# 8- FOOTER (ticket, logos, mentions légales, QR code)
+	add_footer.vertical(formatted_filename, output_file, metadatas, collection)

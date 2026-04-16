@@ -35,7 +35,7 @@
     .catch(error => console.error(error));
 }
 
-const forms = document.querySelectorAll('form');
+const forms = document.querySelectorAll('form[action^="/print"]');
 forms.forEach(form => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -121,3 +121,41 @@ function notify(type, message, length = 6000) {
     destroyNotification(notif, notificationLog)
   }, length);
 }
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-reload]")) {
+    location.reload(true);
+  }
+  if (event.target.closest("[data-back]")) {
+    location.href = document.location.origin;
+  }
+  if (event.target.closest("[data-archive-errors]")) {
+    const button = event.target.closest("[data-archive-errors]");
+    
+    fetch('/archive-errors', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'success') {
+        notify('success', 'Les erreurs ont été archivées. Rechargement de la page...');
+        setTimeout(() => {
+          location.reload(true);
+        }, 2000);
+      } else {
+        notify('danger', 'Erreur : ' + data.message);
+        button.disabled = false;
+        button.textContent = 'Ne plus afficher ce message';
+      }
+    })
+    .catch(error => {
+      console.error('Erreur:', error);
+      notify('danger', 'Une erreur est survenue lors de l\'archivage');
+      button.disabled = false;
+      button.textContent = 'Ne plus afficher ce message';
+    });
+  }
+});

@@ -1,5 +1,11 @@
 # Machine à lire
-an open-source old newspapers distributor based on the project "L'Exprimante". 📃
+an open-source old newspapers distributor, a project by ALCA Nouvelle-Aquitaine derived from the project "L'Exprimante". 📃
+
+**V2 Major Changes:** Markdown frontmatter syntax, multi-collection support, centralized configuration system, improved metadata validation, and web-based collection management.
+
+## Ideas for future improvements
+
+- displaying a notification to manually validate if the usb key action is performed.
 
 ## Tutorials (in FR)
 
@@ -35,6 +41,7 @@ an open-source old newspapers distributor based on the project "L'Exprimante". �
 ## Some modifications applied
 
 ### Activate notifications
+- Deactivate native modal when a usb is plugged : go to `files > édition > préférences > gestion des supports amovibles > décocher "Afficher les options disponibles pour les supports amovibles quand ils sont insérés"`
 - Install the notification daemon `sudo apt-get install notification-daemon`
 - Install spi2 `sudo apt-get install at-spi2-core`
 - Add it to the list of services :
@@ -52,6 +59,10 @@ an open-source old newspapers distributor based on the project "L'Exprimante". �
 ### Add webserver
 - Install flask `sudo pip install flask`
 - follow the same process used for `copy.service` (end of readme) with webserver.service
+
+### V2: Switch to md with frontmatter syntax (Required for V2)
+- Install frontmatter library: `pip3 install python-frontmatter`
+- Install PyYAML for config parsing: `pip3 install PyYAML`
 
 ### Launch kiosque mode
 Source : https://developers.deepgram.com/blog/2022/01/chromium-kiosk-pi/
@@ -73,23 +84,122 @@ Source : https://developers.deepgram.com/blog/2022/01/chromium-kiosk-pi/
 - Create an "image" folder on the usb drive
 - add an IMAGE text followed by the file name (without space !)
 
-## Original project
+## V2 Configuration & Collections System
+
+### Collections
+
+Machine à lire V2 organizes articles into **collections**—independent groups with their own metadata, configuration, and visual identity.
+
+### Configuration Files
+
+**Global Config** (`AJOUT/Collections/config.yml`):
+```yaml
+changementCollectionPossible: true  # Allow visitors to switch collections
+collectionParDefaut: "autrices"     # Auto-load collection on startup (can be false)
+texteChoixCollection: "Choose..."   # UI text
+imprimante: TM-T20III               # Printer model, TM-T20III or TM-T20IV
+```
+
+**Per-Collection Config** (`AJOUT/Collections/{collection}/config.yml`):
+```yaml
+collectionNom: Autrices
+collectionDescription: "A collection of..."
+collectionLogos:
+  - logo.png
+ticketDescription: "Text for tickets..."
+ticketAvertissement: "Warning text..."
+ticketLogos1:
+  - logo-institution.png
+ticketMentionsLegales: "Copyright..."
+ticketLogos2:
+  - logo-partner.png
+```
+
+These files should be provided on a USB key in the `AJOUT` folder to customize the system.
+
+### USB Workflow (AJOUT/SUPPR)
+
+**AJOUT (Add/Update Articles):**
+- Rename USB key to `AJOUT`
+- Create `Collections` folder
+- Put the global config file at its root (see "Configuration Files")
+- Create a folder for each collection (no space or special characters)
+- Include `articles/` subfolder with article images (`Collections/{collectionName}/articles/001.md`, `002.md`, etc.)
+- Include `images/` subfolder with article images
+- Include the collection config on the same level (see "Configuration Files")
+- Insert into Raspberry Pi → automatic processing (can take several minutes depending on the amount of articles)
+- **Articles are merged** with existing content (not replaced)
+- **⚠️ Remove USB key after processing** or it will re-process on reboot
+
+**SUPPR (Delete All):**
+- Use a **different USB key** named `SUPPR`
+- Include empty file `suppression.txt` at root
+- Insert into Raspberry Pi → deletes all articles and images
+- **WARNING: Irreversible operation**
+- **⚠️ Remove USB key after processing** or it will re-process on reboot
+
+### Processing Pipeline
+
+1. USB detected (AJOUT or SUPPR name)
+2. `file_converter.py` orchestrates processing
+3. `meta_extractor.py` parses frontmatter & validates metadata
+4. `qrcodegenerator.py` creates QR codes for URLs
+5. `txt_to_html.py` converts markdown to HTML
+6. `imgkit` (wkhtmltopdf) renders HTML to JPG with footer
+7. `images/{collection}/` stores final JPGs and metadata
+8. `server.py` (Flask) serves web UI to display articles
+9. `print.py` controls thermal printer output
+
+Errors are logged to `images/errors_YYYY-MM-DD_HH-MM-SS.json`
+
+## Original project (& V2 tweaks for file format)
 
 this project was
   - initiated by Auvergne-Rhône-Alpes Livre et Lecture (Alizé Buisse and Priscille Legros)
   - created, designed and developed by Léa Belzunces, Esther Bouquet and Déborah-Loïs Séry
+  - Is now transformed and reshaped by Rachel Pellin ([webtopie](https://webtopie.fr)) for ALCA Nouvelle-Aquitaine
 
-All of the next steps have been developed for a raspberry pi 3 B+ running [Stretch Version 9](https://downloads.raspberrypi.org/raspbian/images/raspbian-2019-04-09/) and an Epson TM-T20III. The articles that you want to print need to be .txt files. The content needs to be in markdown with the following order: 
+V2 enhancements: Multi-collection support, YAML frontmatter metadata, improved validation, centralized configuration.
 
-- '#' → name of the newspaper 
-- '##' → title (h1)
-- '#####' → subtitle (h2)
-- '######' → subtitle (h3)
-- '###' → text 
-- '####' → URL to the online article (to generate a qrCode)
-- '#######' → category
+All of the next steps have been developed for a Raspberry Pi 4 running [Bullseye Version 11](https://downloads.raspberrypi.com/rpd_x86/images/rpd_x86-2022-07-04/2022-07-01-raspios-bullseye-i386.iso) and an Epson TM-T20III OR Epson TM-T20IV.
 
-You can link a .jpg or a .JPEG file to the corresponding .txt file (if the article contains an illustration for instance) by giving it the same name.
+### V2: Article Format (Markdown with YAML Frontmatter)
+
+Articles are now created as **Markdown files with YAML frontmatter** (the file extension can be .txt or .md, whichever suits you the most). Each article must follow this structure:
+
+```markdown
+---
+titre: "My great article"
+auteur: "Jane Doe"
+categorie: "XVIII century"
+url: https://url-for-the-qr_code.com
+image: image-filename.jpg
+bio: |-
+  Optional author biography
+  must have the weird "|-" on first line
+  and each new line must be indented (for exemple with 2 spaces or a tab)
+---
+
+Regular markdown formatted text...
+
+with paragraphs
+
+and carriage returns<br>
+very useful for poems
+
+## You may insert subtitles
+
+— or perhaps<br>
+— some dialogs
+
+```
+
+**Required fields:** `titre`, `auteur`, `categorie`, `url`  
+**Optional fields:** `image` (JPG/PNG), `bio` (multi-line)
+
+**Important:** No accents in field names or filenames. Use `categorie` not `catégorie`, and `Portrait_Andre_Leo.jpg` not `Portrait d'André Léo.jpg`.
+
+Images referenced in the `image:` field must be placed in a `images/` subfolder within the collection directory.
 
 ## 💿 install [python-escpos - Python library to manipulate ESC/POS Printers](https://python-escpos.readthedocs.io/en/latest/user/installation.html)
   
@@ -171,27 +281,6 @@ You can link a .jpg or a .JPEG file to the corresponding .txt file (if the artic
         - press eleven times to select speed 11 and one time long (>1 sec) the feed button
         
 - turn the printer off and restart it to use it
-
-## 🔘 install the button controlling the printer
-
-Because the code that launches the printer is linked to a physical button being pushed or not, we need to physically connect the button to the raspberry. We added at LED and resistor as there is no GUI involved in this project so it tells people that the print is being processed and they don't need to push the button again.
-
-  - Materials:
-    - 1 breadboard
-    - 1 [pushed button](https://www.ag-electronique.fr/boutons-poussoirs-avec-anneau-a-led-plat-acier-inoxydable/10004-bouton-poussoir-plat-acier-inoxydable-dpst-1no-1nf-velr2000-5410329406189.html?search_query=R2000&results=6)
-    - 1 RTC (RealTime Clock - we chose the DS3231)
-    - 4 LED (1 yellow, 1 green, 1 red, 1 blue)
-    - 4 resistors (XX for the blue LED and XX for the yellow, red and green LED)
-    - 11 female-male cables
-    - 4 male-male cables
-
-![how to connect](https://raw.githubusercontent.com/estherbouquet/machine-a-lire/master/doc/connectique.JPG)
-
-## 🕐 install the RTC (Real Time Clock)
-
-The Raspberry Pi is designed to be an ultra-low cost computer, so it doesn't have a little coin-battery-powered 'Real Time Clock' (RTC) module, which keeps time even when the power is off, or the battery removed. Instead, the Pi is intended to be connected to the Internet via Ethernet or WiFi, updating the time automatically from the global ntp (network time protocol) servers.
-
-In our case, the raspberry has no network connection, so it will not be able to keep the time when the power goes out. This will lead to an error when we want to print an article at a specific date. To fix this problem you need to connect and install a RTC by following the steps on [Adafruit's website](https://learn.adafruit.com/adding-a-real-time-clock-to-raspberry-pi/overview). Don't forget to do `sudo hwclock -s` when you are done in order to set the System Time from the Hardware Clock.
 
 ## 💻 try the code
 
@@ -287,12 +376,5 @@ We are going to create 2 `.service` files because we are going to use `systemd`.
   - `sudo systemctl enable printer.service`
   - `sudo reboot` and try to press the button when the raspberry starts up!
   - know that if one day you want to disable the `printer.service`, nothing simpler than `sudo systemctl disable printer.service`
-
-### For clock.service
-- to ensure that the raspberry takes the time from the RTC everytime it boots, we need to create a service too: `sudo nano clock.service`
-  - copy paste the content of `clock.service` that you can find in the `/home/pi/Documents/machine-a-lire/systemdfiles` folder 
-  - `ctrl + o` to write then press `enter` to valid the modifications then `ctrl + x` to exit
-  - `sudo systemctl enable clock.service`
-  - `sudo reboot` and try to press the button when the raspberry starts up!
 
 And now you're done! 🎉 Enjoy!

@@ -1,10 +1,12 @@
-CATEGORIE Tutoriel
-
-IMAGE logos-machine.png
-
-AUTEUR Rachel Pellin
-
-# Tutoriel d'utilisation de la machine à lire.
+---
+titre: "Tutoriel d'utilisation de la machine à lire"
+auteur: "Rachel Pellin"
+categorie: "Tutoriel"
+url: https://github.com/rachelwe/machine-a-lire
+image: logos-machine.png
+bio: |-
+  Une éventuelle biographie...
+---
 
 Branchez et normalement tout fonctionne ! Si ce n'est pas le cas...
 
@@ -33,8 +35,3 @@ Pour recharger l'interface après avoir rajouté des éléments, branchez un cla
 
 
 Pour éteindre la machine, débranchez la ou éteignez la multiprise.
-
-
-BIO Une éventuelle biographie...
-
-URL https://github.com/rachelwe/machine-a-lire

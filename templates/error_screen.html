@@ -1,0 +1,14 @@
+<p>Cela peut venir de plusieurs points, assurez-vous donc de vérifier les éléments suivants l'un après l'autre (par ordre de probabilité) :</p>
+
+{% include "errors_list.html" %}
+
+<ol>
+    <li><strong>C'est volontaire :</strong> La machine est allumée pour la 1re fois ou vous venez de supprimer avec succès tous les fichiers avec la clé SUPPR (bravo !).</li>
+    <li><strong>La page n'est pas à jour :</strong> Cliquez sur le bouton "Recharger la page" en haut <strong>OU</strong> redémarrez la machine (en enlevant bien les clés USB avant).</li>
+    <li><strong>Un ou plusieurs des fichiers ne respectent pas la nomenclature et le formatage des fichiers textes :</strong> rendez-vous sur <a href="https://doc-machine-a-lire.webtopie.fr/">doc-machine-a-lire.webtopie.fr/</a> pour vous aider lors de la création et retrouver les éléments et indications de format obligatoires.</li>
+    <li><strong>La clé usb d'ajout ou de suppression est restée branchée lors du redémarrage de l'appareil :</strong> Cela peut créer des conflits. Pour résoudre :
+      <ol>
+          <li><strong>Option 1 : </strong>débrancher les éventuelles clés USB → redémarrer. Après le redémarrage terminé : enclenchez la clé "AJOUT". Lorsque la notification "Traitement terminé !" apparaît (cela peut prendre plusieurs minutes), enlevez la clé AJOUT et cliquez sur le bouton "Recharger la page" en haut <strong>OU</strong> redémarrez la machine.</li>
+          <li><strong style="color:#C41E1E;">⚠️ Intervention technique, ne pratiquer qu'avec assistance de l'ALCA ⚠️</strong><br> <strong>Option 2 si l'option 1 n'a pas fonctionné : </strong>débrancher les éventuelles clés USB, puis brancher un clavier, appuyer sur les touches <kbd>alt+f4</kbd>, puis lancer un terminal. Dans le terminal (carré noir en haut à gauche avec les symboles ">_"), exécuter les commandes suivante : "<code>cd /media/pi</code>", entrer, puis "<code>sudo rm -r AJOUT/</code>", entrer. Redémarrer le raspberry puis retenter le processus d'ajout (insérer la clé USB, attendre la notification de traitement terminé et cliquer sur recharger la page).</li>
+      </ol>
+</ol>

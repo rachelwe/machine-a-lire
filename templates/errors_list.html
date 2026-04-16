@@ -1,0 +1,37 @@
+{% if all_errors and all_errors|length > 0 %}
+<section class="error-card pam">
+   <h2 class="mt0">⚠️ Erreurs de conversion</h2>
+   <p class="text-light">Les erreurs suivantes ont été détectées lors du dernier traitement des fichiers. Les fichiers cités ci-dessous n'ont par conséquent pas été générés.</p>
+   <p class="text-light">Rendez-vous sur <a href="https://doc-machine-a-lire.webtopie.fr/">doc-machine-a-lire.webtopie.fr/</a> pour vous aider lors de la création des textes et retrouver les indications de format obligatoires.</p>
+   
+   <table class="errors-table">
+      <thead>
+         <tr>
+            <th>Collection</th>
+            <th>Fichier</th>
+            <th>Type</th>
+            <th>Message d'erreur</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for collection_entry in all_errors %}
+            {% for error in collection_entry.errors %}
+            <tr class="error-row">
+               <td><strong>{{ collection_entry.collection }}</strong></td>
+               <td><code>{{ error.filename }}</code></td>
+               <td><code>{{ error.key }}</code></td>
+               <td>{{ error.message|safe }}</td>
+            </tr>
+            {% endfor %}
+         {% endfor %}
+      </tbody>
+   </table>
+   
+   <div class="error-actions" style="margin-top: 2rem;">
+      <button data-archive-errors class="button button--danger"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z"></path></svg> Ne plus afficher</button>
+      <p class="text-light" style="margin-top: 0.5rem; font-size: 0.875rem;">
+         ⚠️ Attention : Cette action archivera la liste des fichiers en erreur. Vous ne pourrez plus consulter ce rapport.
+      </p>
+   </div>
+</section>
+{% endif %}

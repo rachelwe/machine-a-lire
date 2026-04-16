@@ -1,0 +1,59 @@
+# EXEMPLE DE FICHIER DE CONFIGURATION POUR LA CREATION D'UNE COLLECTION EN PARTICULIER
+# Le fichier devra s'appeler "config.yml" et être placé dans le dossier de la collection sur la clé AJOUT (ex: "collections/autrices/config.yml")
+# Pour les textes qui doivent apparaitre sur plusieurs lignes, utiliser la même syntaxe que "collectionDescription" ("|-", saut de ligne, puis chaque nouvelle ligne avec une indentation de 2 espaces).
+
+# -----------------------------------------
+# Configurations pour la borne
+# -----------------------------------------
+
+# Nom affiché de la collection dans l'interface.
+collectionNom: Autrices
+
+# Description de la collection affichée dans l'interface d'accueil
+# Le signe "|-" à la fin de la première ligne signifie que 
+# les sauts de ligne seront conservés dans le texte indentés dessous.
+collectionDescription: |-
+  Une collection de tickets proposée par La Bibliothèque patrimoniale numérique d'Alca en nouvelle-Aquitaine.
+  Cliquez sur le titre qui vous intéresse pour l'imprimer !
+
+# Liste des logos affichés en dessous des catégories dans l'interface.
+# Ils s'afficheront l'un en dessous de l'autre, largeur affichée : 256px
+# la syntaxe attendue est celui d'un nom de fichier image présent dans le dossier "images" de la collection.
+# Vous pouvez insérer autant de logos que vous le souhaitez, ou ne pas en mettre du tout (dans ce cas, laisser la ligne "collectionLogos" vide : collectionLogos: )
+collectionLogos:
+  - logos-machine.png
+  - logos-admin.png
+
+# -----------------------------------------
+# Configurations pour les tickets
+# -----------------------------------------
+
+# Description affichée sur les tickets de la collection
+# Premier texte affiché sous la biographie
+ticketDescription: |-
+  Un ticket-poème proposé par La Bibliothèque patrimoniale numérique d\'Alca en Nouvelle-Aquitaine. Pour plus de découvertes et pour télécharger des livres numériques gratuitement et librement : alca-nouvelle-aquitaine.fr/fr/catalogue-numerique-patrimonial
+
+# Avertissement affiché sur les tickets de la collection
+# Affiché juste en dessous de la description
+ticketAvertissement: |-
+  Ticket lecteur à conserver - ne pas jeter sur la voie publique
+
+# Première liste de logos affichée entre 2 séparateurs après l'avertissement
+# Il peut y avoir 1 ou plusieurs logos
+# Cet emplacement sert généralement à afficher le logo de la machine en elle-même
+ticketLogos1:
+  - logos-machine.png
+
+# Dernier texte affiché sur les tickets de la collection
+# Affiché juste en dessous de la première liste de logos
+# Sert généralement à afficher les mentions légales, crédits…
+ticketMentionsLegales: |-
+  Agence livre, cinéma et audiovisuel de la Région Nouvelle-Aquitaine, ALCA accompagne les professionnels de l'image et de l'écrit dans toutes les étapes de leur parcours et de leurs projets, de la création à la diffusion d'oeuvres.
+  Interface privilégiée entre la stratégie culturelle de la Région Nouvelle-Aquitaine, la Drac et les professionnels concernés, Alca organise depuis ses sites d'Angoulême, de Bordeaux, de Limoges et de Poitiers, le soutien aux industries du livre, du cinéma et de l'audiovisuel. Les actions portées par ALCA visent un équilibre géographique en direction des industris culturelles de la région et le rayonnement de ses acteurs, en France et à l'international.
+  Un projet adapté de "L'Exprimante" Lectura Plus
+
+# Première liste de logos affichée entre 2 séparateurs après les mentions légales
+# Il peut y avoir 1 ou plusieurs logos
+# Cet emplacement sert généralement à afficher le logo des partenaires de la collection et des institutions qui ont contribué à la création de la machine
+ticketLogos2:
+  - logos-admin.png
