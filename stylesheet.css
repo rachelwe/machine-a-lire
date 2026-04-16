@@ -163,20 +163,20 @@ h4 {
 
 @font-face {
   font-family : "Corporate S Bold";
-  src : url('file:///home/pi/.fonts/CorpoSBol.otf');  
+  src : url('file:///home/alca/.fonts/CorpoSBol.otf');  
 }
 
 @font-face {
   font-family : "Corporate S Regular";
-  src : url('file:///home/pi/.fonts/CorpoSReg.otf');  
+  src : url('file:///home/alca/.fonts/CorpoSReg.otf');  
 }
 
 @font-face {
   font-family : "Corporate S Light";
-  src : url('file:///home/pi/.fonts/CorpoSLig.otf');  
+  src : url('file:///home/alca/.fonts/CorpoSLig.otf');  
 }
 
 @font-face {
   font-family : "Corporate S Italic";
-  src : url('file:///home/pi/.fonts/CorpoSIta.otf');  
+  src : url('file:///home/alca/.fonts/CorpoSIta.otf');  
 }

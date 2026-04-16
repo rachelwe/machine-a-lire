@@ -4,13 +4,13 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/pi/Documents/machine-a-lire
-ExecStart=/bin/bash /home/pi/Documents/machine-a-lire/listeningForUSB.sh
+WorkingDirectory=/home/alca/Documents/machine-a-lire
+ExecStart=/bin/bash /home/alca/Documents/machine-a-lire/listeningForUSB.sh
 #Si on veut voir les logs en cas d'erreur:
 StandardOutput=inherit
 StandardError=inherit
 #StandardOutput=null
-User=pi
+User=alca
 Restart=always
 
 [Install]
