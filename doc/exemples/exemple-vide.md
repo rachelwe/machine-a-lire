@@ -1,17 +1,15 @@
-CATEGORIE [[époque, catégorie...]]
+---
+titre: "[[titre]]"
+auteur: "[[auteur du texte]]"
+categorie: "[[époque, catégorie...]]"
+url: "[[lien du qrCode]]"
+image: "[[nom de l'image, ex : jean.png]]"
+bio: |-
+  [[Une éventuelle biographie...]]
+---
 
-IMAGE [[nom de l'image, ex : jean.png]]
-
-AUTEUR [[auteur du texte]]
-
-# [[titre]]
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae cumque iste voluptates aut veniam ipsam consectetur quae dicta eligendi veritatis! Eos doloremque ea ad quis, praesentium blanditiis perspiciatis obcaecati suscipit.
 
 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae cumque iste voluptates aut veniam ipsam consectetur quae dicta eligendi veritatis! Eos doloremque ea ad quis, praesentium blanditiis perspiciatis obcaecati suscipit.
 
 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae cumque iste voluptates aut veniam ipsam consectetur quae dicta eligendi veritatis! Eos doloremque ea ad quis, praesentium blanditiis perspiciatis obcaecati suscipit.
-
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae cumque iste voluptates aut veniam ipsam consectetur quae dicta eligendi veritatis! Eos doloremque ea ad quis, praesentium blanditiis perspiciatis obcaecati suscipit.
-
-BIO [[Une éventuelle biographie...]]
-
-URL [[lien du qrCode]]

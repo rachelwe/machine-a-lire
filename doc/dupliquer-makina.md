@@ -1,17 +1,24 @@
 # Dupliquer une makina
 
+Vous avez déjà une machine à lire et vous souhaitez la dupliquer ? Voici la marche à suivre (cela évite une configuration longue). Autrement suivez les étapes d'installation du [README](../README.md).
+
 ## matériel utilisé
-- Raspberry 3B avec caisse de protection.
+
+Pour la partie technique :
+
+- Raspberry 3B (minimum, 4 de préférence) avec caisse de protection.
 - Ecran tactile 7" 1024x600 capacitif HDMI.
 - 2 clefs USB 16G
 - Carte MicroSD 32GB
 - Bobines papier thermique SBPA pour caisses et
 imprimantes 80x75x12
-- Imprimante POS Epson TM-T20III - C31CH51011
+- Imprimante POS Epson TM-T20III OU TM-T20IV
+
+Vous êtes libres dans vos choix d'enveloppe pour la coque de la borne !
 
 ## Duplication de l'OS
 
-Si vous avez déjà une Makina, vous pouvez suivre les étapes suivantes, autrement suivez les étapes d'installation du [README](../README.md).
+Si vous avez déjà une Makina, vous pouvez suivre les étapes suivantes
 
 Tutoriel repris de [Raspberry Tips - Comment Créer une Image de votre Raspberry Pi ?](https://raspberrytips.fr/creer-image-raspberry-pi/)
 
